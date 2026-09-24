@@ -131,9 +131,13 @@ function AdminOrdersView() {
           <TableBody>
             {orderList && orderList.length > 0
               ? orderList.map((orderItem) => (
-                  <TableRow>
+                  <TableRow key={orderItem?._id}>
                     <TableCell>{orderItem?._id}</TableCell>
-                    <TableCell>{orderItem?.orderDate.split("T")[0]}</TableCell>
+                    <TableCell>
+                      {orderItem?.orderDate
+                        ? String(orderItem.orderDate).split("T")[0]
+                        : "—"}
+                    </TableCell>
                     <TableCell>
                       <Badge
                         className={`py-1 px-3 ${
@@ -147,30 +151,30 @@ function AdminOrdersView() {
                         {orderItem?.orderStatus}
                       </Badge>
                     </TableCell>
-                    <TableCell>Rs. ${orderItem?.totalAmount}</TableCell>
+                    <TableCell>Rs. {orderItem?.totalAmount}</TableCell>
                     <TableCell>
-                      <Dialog
-                        open={openDetailsDialog}
-                        onOpenChange={() => {
-                          setOpenDetailsDialog(false);
-                          dispatch(resetOrderDetails());
-                        }}
+                      <Button
+                        onClick={() =>
+                          handleFetchOrderDetails(orderItem?._id)
+                        }
                       >
-                        <Button
-                          onClick={() =>
-                            handleFetchOrderDetails(orderItem?._id)
-                          }
-                        >
-                          View Details
-                        </Button>
-                        <AdminOrderDetailsView orderDetails={orderDetails} />
-                      </Dialog>
+                        View Details
+                      </Button>
                     </TableCell>
                   </TableRow>
                 ))
               : null}
           </TableBody>
         </Table>
+        <Dialog
+          open={openDetailsDialog}
+          onOpenChange={() => {
+            setOpenDetailsDialog(false);
+            dispatch(resetOrderDetails());
+          }}
+        >
+          <AdminOrderDetailsView orderDetails={orderDetails} />
+        </Dialog>
       </CardContent>
     </Card>
   );

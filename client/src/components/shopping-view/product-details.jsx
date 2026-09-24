@@ -81,7 +81,7 @@ function ProductDetailsDialog({
             <div className="flex items-baseline gap-3">
               {productDetails?.salePrice > 0 ? (
                 <p className="text-3xl font-semibold text-primary">
-                  Rs. ${productDetails?.salePrice}
+                  Rs. {productDetails?.salePrice}
                 </p>
               ) : null}
               <p
@@ -89,7 +89,7 @@ function ProductDetailsDialog({
                   productDetails?.salePrice > 0 ? "line-through text-muted-foreground text-lg font-normal" : "text-primary"
                 }`}
               >
-                Rs. ${productDetails?.price}
+                Rs. {productDetails?.price}
               </p>
             </div>
 

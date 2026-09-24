@@ -143,6 +143,14 @@ const initialFormData = {
   status: "",
 };
 
+function formatOrderDate(value) {
+  if (!value) return "—";
+  const date = value instanceof Date ? value : new Date(value);
+  if (Number.isNaN(date.getTime()))
+    return String(value).split("T")[0] || "—";
+  return date.toISOString().split("T")[0];
+}
+
 function AdminOrderDetailsView({ orderDetails }) {
   const [formData, setFormData] = useState(initialFormData);
   const { user } = useSelector((state) => state.auth);
@@ -175,44 +183,76 @@ function AdminOrderDetailsView({ orderDetails }) {
     });
   }
 
+  // Never render blank rows: the parent fetches details asynchronously,
+  // so show a loading state until the order arrives.
+  if (!orderDetails) {
+    return (
+      <DialogContent className="sm:max-w-[600px]">
+        <p className="py-10 text-center text-muted-foreground">
+          Loading order details…
+        </p>
+      </DialogContent>
+    );
+  }
+
   return (
     <DialogContent className="sm:max-w-[600px]">
       <div className="grid gap-6">
         <div className="grid gap-2">
           <div className="flex mt-6 items-center justify-between">
             <p className="font-medium">Order ID</p>
-            <Label>{orderDetails?._id}</Label>
+            <Label>{orderDetails._id || "—"}</Label>
           </div>
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Date</p>
-            <Label>{orderDetails?.orderDate.split("T")[0]}</Label>
+            <Label>{formatOrderDate(orderDetails.orderDate)}</Label>
           </div>
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Price</p>
-            <Label>Rs. ${orderDetails?.totalAmount}</Label>
+            <Label>Rs. {orderDetails.totalAmount ?? "—"}</Label>
           </div>
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Payment method</p>
-            <Label>{orderDetails?.paymentMethod}</Label>
+            <Label>{orderDetails.paymentMethod || "—"}</Label>
           </div>
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Payment Status</p>
-            <Label>{orderDetails?.paymentStatus}</Label>
+            <Label>{orderDetails.paymentStatus || "—"}</Label>
           </div>
+          {orderDetails.transactionId ? (
+            <div className="flex mt-2 items-center justify-between">
+              <p className="font-medium">Transaction ID</p>
+              <Label>{orderDetails.transactionId}</Label>
+            </div>
+          ) : null}
+          {orderDetails.paidAmount != null ? (
+            <div className="flex mt-2 items-center justify-between">
+              <p className="font-medium">Amount paid</p>
+              <Label>Rs. {orderDetails.paidAmount}</Label>
+            </div>
+          ) : null}
+          {orderDetails.paymentFailureReason ? (
+            <div className="flex mt-2 items-center justify-between">
+              <p className="font-medium">Payment note</p>
+              <Label className="text-red-600">
+                {orderDetails.paymentFailureReason}
+              </Label>
+            </div>
+          ) : null}
           <div className="flex mt-2 items-center justify-between">
             <p className="font-medium">Order Status</p>
             <Label>
               <Badge
                 className={`py-1 px-3 ${
-                  orderDetails?.orderStatus === "confirmed"
+                  orderDetails.orderStatus === "confirmed"
                     ? "bg-green-500"
-                    : orderDetails?.orderStatus === "rejected" ||
-                      orderDetails?.orderStatus === "cancelled"
+                    : orderDetails.orderStatus === "rejected" ||
+                      orderDetails.orderStatus === "cancelled"
                     ? "bg-red-600"
                     : "bg-black"
                 }`}
               >
-                {orderDetails?.orderStatus}
+                {orderDetails.orderStatus || "—"}
               </Badge>
             </Label>
           </div>
@@ -222,15 +262,21 @@ function AdminOrderDetailsView({ orderDetails }) {
           <div className="grid gap-2">
             <div className="font-medium">Order Details</div>
             <ul className="grid gap-3">
-              {orderDetails?.cartItems && orderDetails?.cartItems.length > 0
-                ? orderDetails?.cartItems.map((item) => (
-                    <li className="flex items-center justify-between">
-                      <span>Title: {item.title}</span>
-                      <span>Quantity: {item.quantity}</span>
-                      <span>Price: Rs. ${item.price}</span>
-                    </li>
-                  ))
-                : null}
+              {orderDetails.cartItems && orderDetails.cartItems.length > 0 ? (
+                orderDetails.cartItems.map((item) => (
+                  <li
+                    key={item.productId || item.title}
+                    className="flex items-center justify-between gap-2"
+                  >
+                    <span>
+                      {item.title} × {item.quantity}
+                    </span>
+                    <span>Rs. {item.price}</span>
+                  </li>
+                ))
+              ) : (
+                <li className="text-muted-foreground">No items found.</li>
+              )}
             </ul>
           </div>
         </div>
@@ -238,12 +284,14 @@ function AdminOrderDetailsView({ orderDetails }) {
           <div className="grid gap-2">
             <div className="font-medium">Shipping Info</div>
             <div className="grid gap-0.5 text-muted-foreground">
-              <span>{user.userName}</span>
-              <span>{orderDetails?.addressInfo?.address}</span>
-              <span>{orderDetails?.addressInfo?.city}</span>
-              <span>{orderDetails?.addressInfo?.pincode}</span>
-              <span>{orderDetails?.addressInfo?.phone}</span>
-              <span>{orderDetails?.addressInfo?.notes}</span>
+              <span>{user?.userName || "—"}</span>
+              <span>{orderDetails.addressInfo?.address || "—"}</span>
+              <span>{orderDetails.addressInfo?.city || "—"}</span>
+              <span>{orderDetails.addressInfo?.pincode || "—"}</span>
+              <span>{orderDetails.addressInfo?.phone || "—"}</span>
+              {orderDetails.addressInfo?.notes ? (
+                <span>{orderDetails.addressInfo.notes}</span>
+              ) : null}
             </div>
           </div>
         </div>

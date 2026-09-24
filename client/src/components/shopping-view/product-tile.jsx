@@ -65,7 +65,7 @@ function ShoppingProductTile({
             {
                 product?.salePrice > 0 ?
                 <span className="text-lg font-semibold text-primary">
-                Rs. ${product?.salePrice}
+                Rs. {product?.salePrice}
                 </span>
                 : null
             }
@@ -73,7 +73,7 @@ function ShoppingProductTile({
             <span  className={`${
                 product?.salePrice > 0 ? "line-through text-muted-foreground text-sm font-normal" : "text-lg font-semibold text-primary"
               }`}>
-                 Rs. ${product?.price}
+                 Rs. {product?.price}
             </span>
 
 
