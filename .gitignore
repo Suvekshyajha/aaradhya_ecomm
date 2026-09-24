@@ -1,0 +1,48 @@
+# Root .gitignore for aaradhya_ecomm (covers client/ + server/)
+
+# Dependencies
+node_modules/
+client/node_modules/
+server/node_modules/
+
+# Env files (never commit secrets - keep only *.example)
+.env
+.env.local
+.env.*.local
+*.local
+client/.env
+server/.env
+
+# Build output
+dist/
+dist-ssr/
+build/
+client/dist/
+client/dist-ssr/
+server/dist/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+pnpm-error.log*
+
+# Local uploads (multer / test images)
+server/uploads/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
