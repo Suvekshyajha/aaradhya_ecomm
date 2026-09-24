@@ -428,6 +428,8 @@ function ShoppingCheckout() {
         <img
           src={img}
           alt="AARADHYA checkout banner - complete your purchase"
+          fetchPriority="high"
+          decoding="async"
           className="h-full w-full object-cover object-center"
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#2b0f1e]/80 via-[#2b0f1e]/40 to-transparent" />

@@ -11,6 +11,34 @@ export default defineConfig({
       "@": path.resolve(__dirname, "./src"),
     },
   },
+  build: {
+    // Split third-party code into long-lived vendor chunks so repeat visits
+    // reuse the cached React/UI/state bundles instead of re-downloading them.
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (!id.includes("node_modules")) return undefined;
+          if (id.includes("@radix-ui") || id.includes("lucide-react"))
+            return "vendor-ui";
+          if (
+            id.includes("redux") ||
+            id.includes("immer") ||
+            id.includes("reselect")
+          )
+            return "vendor-state";
+          if (
+            id.includes("react") ||
+            id.includes("react-dom") ||
+            id.includes("react-router") ||
+            id.includes("scheduler") ||
+            id.includes("axios")
+          )
+            return "vendor-core";
+          return "vendor";
+        },
+      },
+    },
+  },
 })
 
 

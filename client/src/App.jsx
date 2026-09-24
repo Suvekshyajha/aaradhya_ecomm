@@ -112,26 +112,41 @@
 
 
 import { Routes, Route } from "react-router-dom";
+import { lazy, Suspense } from "react";
 import AuthLayout from "./components/auth/layout";
-import AuthLogin from "./pages/auth/login";
-import AuthRegister from "./pages/auth/register";
-import AdminLayout from "./components/admin-view/layout";
-import AdminDashboard from "./pages/admin-view/dashboard";
-import AdminProducts from "./pages/admin-view/products";
-import AdminOrders from "./pages/admin-view/orders";
-import AdminFeatures from "./pages/admin-view/features";
-import AdminAdvertisements from "./pages/admin-view/ads";
 import ShoppingLayout from "./components/shopping-view/layout";
-import NotFound from "./pages/not-found";
-import ShoppingHome from "./pages/shopping-view/home";
-import ShoppingListing from "./pages/shopping-view/listing";
-import ShoppingCheckout from "./pages/shopping-view/checkout";
-import ShoppingAccount from "./pages/shopping-view/account";
 import CheckAuth from "./components/common/check-auth";
-import UnauthPage from "./pages/unauth-page";
-import SearchProducts from "./pages/shopping-view/search";
-import About from "./pages/shopping-view/about";
-import Contact from "./pages/shopping-view/contact";
+import NotFound from "./pages/not-found";
+// Route components are lazy-loaded so the initial bundle stays small
+// (LCP/FCP/INP). Each route becomes its own chunk, fetched on navigation.
+const AuthLogin = lazy(() => import("./pages/auth/login"));
+const AuthRegister = lazy(() => import("./pages/auth/register"));
+const AdminLayout = lazy(() => import("./components/admin-view/layout"));
+const AdminDashboard = lazy(() => import("./pages/admin-view/dashboard"));
+const AdminProducts = lazy(() => import("./pages/admin-view/products"));
+const AdminOrders = lazy(() => import("./pages/admin-view/orders"));
+const AdminFeatures = lazy(() => import("./pages/admin-view/features"));
+const AdminAdvertisements = lazy(() => import("./pages/admin-view/ads"));
+const ShoppingHome = lazy(() => import("./pages/shopping-view/home"));
+const ShoppingListing = lazy(() => import("./pages/shopping-view/listing"));
+const ShoppingCheckout = lazy(() => import("./pages/shopping-view/checkout"));
+const ShoppingAccount = lazy(() => import("./pages/shopping-view/account"));
+const UnauthPage = lazy(() => import("./pages/unauth-page"));
+const SearchProducts = lazy(() => import("./pages/shopping-view/search"));
+const About = lazy(() => import("./pages/shopping-view/about"));
+const Contact = lazy(() => import("./pages/shopping-view/contact"));
+const EsewaSuccessPage = lazy(() =>
+  import("./pages/shopping-view/esewa-success")
+);
+const EsewaFailurePage = lazy(() =>
+  import("./pages/shopping-view/esewa-failure")
+);
+const MockGatewayPage = lazy(() =>
+  import("./pages/shopping-view/mock-gateway")
+);
+const PaymentSuccessPage = lazy(() =>
+  import("./pages/shopping-view/payment-success")
+);
 import { Skeleton } from "@/components/ui/skeleton";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
@@ -149,11 +164,6 @@ function RouteChangeTracker() {
 
   return null;
 }
-import EsewaSuccessPage from "./pages/shopping-view/esewa-success";
-import EsewaFailurePage from "./pages/shopping-view/esewa-failure";
-import MockGatewayPage from "./pages/shopping-view/mock-gateway";
-import PaymentSuccessPage from "./pages/shopping-view/payment-success";
- 
 function App() {
   const { user, isAuthenticated, isLoading } = useSelector(
     (state) => state.auth
@@ -170,7 +180,10 @@ function App() {
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <RouteChangeTracker />
-      <Routes>
+      <Suspense
+        fallback={<Skeleton className="w-full bg-black h-[600px]" />}
+      >
+        <Routes>
         <Route
           path="/"
           element={
@@ -232,7 +245,8 @@ function App() {
         </Route>
         <Route path="/unauth-page" element={<UnauthPage />} />
         <Route path="*" element={<NotFound />} />
-      </Routes>
+        </Routes>
+      </Suspense>
     </div>
     // <div className="flex flex-col overflow-hidden bg-white">
     //   <Routes>

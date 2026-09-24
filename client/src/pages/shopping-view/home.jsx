@@ -386,6 +386,9 @@ function ShoppingHome() {
               src={slide.src}
               alt={slide.alt}
               key={index}
+              loading={index === 0 ? "eager" : "lazy"}
+              fetchPriority={index === 0 ? "high" : "auto"}
+              decoding="async"
               className={`absolute top-0 left-0 w-full h-full object-cover transition-opacity duration-1000 ${
                 index === currentSlide ? 'opacity-100' : 'opacity-0'
               }`}

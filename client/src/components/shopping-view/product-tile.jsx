@@ -19,6 +19,7 @@ function ShoppingProductTile({
             src={product?.image}
             alt={product?.title}
             loading="lazy"
+            decoding="async"
             className="w-full h-[420px] object-cover transition-transform duration-500 group-hover:scale-105"
             />
 

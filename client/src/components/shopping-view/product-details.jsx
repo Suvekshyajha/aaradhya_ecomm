@@ -60,6 +60,8 @@ function ProductDetailsDialog({
               }
               width={600}
               height={600}
+              loading="lazy"
+              decoding="async"
               className="aspect-square w-full object-cover"
             />
             {productDetails?.salePrice > 0 ? (

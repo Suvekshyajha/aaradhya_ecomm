@@ -95,6 +95,10 @@ function UserCartItemsContent({ cartItem }) {
             <img
         src={cartItem?.image}
         alt={cartItem?.title}
+        loading="lazy"
+        decoding="async"
+        width={80}
+        height={80}
         className="w-20 h-20 rounded object-cover"
       />
        <div className="flex-1">
