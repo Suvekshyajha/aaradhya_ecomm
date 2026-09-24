@@ -1,8 +1,8 @@
 
 import { useState } from 'react';
-import imageOne from '../../assets/download.png';
-import imageTwo from '../../assets/d2.png';
-import imageThree from '../../assets/d3.png';
+import imageOne from '../../assets/download.webp';
+import imageTwo from '../../assets/d2.webp';
+import imageThree from '../../assets/d3.webp';
 import imageFour from '../../assets/bluesari3.jpg';
 import imageFive from '../../assets/pinksari.jpg';
 import imageSix from '../../assets/Whitelehenga.jpg';

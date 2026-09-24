@@ -204,9 +204,9 @@
 
 
 import { useState, useEffect } from 'react';
-import bannerOne from '../../assets/download.png';
-import bannerTwo from '../../assets/d2.png';
-import bannerThree from '../../assets/d3.png';
+import bannerOne from '../../assets/download.webp';
+import bannerTwo from '../../assets/d2.webp';
+import bannerThree from '../../assets/d3.webp';
 import { Button } from '@/components/ui/button';
 import { ChevronLeftIcon, ChevronRightIcon, CloudLightning, ShirtIcon, WatchIcon, PartyPopperIcon, HeartIcon, CrownIcon, StarIcon, GemIcon } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';

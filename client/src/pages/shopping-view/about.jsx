@@ -1,7 +1,7 @@
 
 
 import { useState } from 'react';
-import sariImage from '../../assets/download.png'; // Updated image path
+import sariImage from '../../assets/download.webp'; // Updated image path
 import { Button } from '@/components/ui/button'; // Reusing your Button component
 import { useSEO } from '@/components/common/seo';
 
