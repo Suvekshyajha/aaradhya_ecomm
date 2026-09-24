@@ -11,7 +11,7 @@ import {
   Package,
   TriangleAlert,
 } from "lucide-react";
-
+// Admin dashboard page
 function AdminDashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
