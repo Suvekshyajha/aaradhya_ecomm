@@ -131,14 +131,14 @@ function ShoppingHeader() {
     <header className="sticky top-0 z-40 w-full">
       <div className="flex items-center justify-center gap-2 bg-primary px-4 py-2 text-center text-[12px] font-medium uppercase tracking-[0.18em] text-primary-foreground">
         <Sparkles className="h-3.5 w-3.5 text-gold" />
-        <span>Complimentary shipping on orders over $150 — festive edit live now</span>
+        <span>Complimentary shipping on orders over Rs. 150 — festive edit live now</span>
         <Sparkles className="h-3.5 w-3.5 text-gold" />
       </div>
       <div className="border-b border-border/70 bg-background/90 backdrop-blur-md">
         <div className="relative mx-auto flex h-[72px] max-w-7xl items-center justify-between px-4 md:px-6">
           <Link to="/shop/home" className="flex items-center gap-2.5">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-primary font-display text-xl font-bold text-gold">
-              G
+              A
             </span>
             <span className="leading-none">
               <span className="block font-display text-[26px] font-bold tracking-wide text-primary">
