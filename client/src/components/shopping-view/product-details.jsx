@@ -62,7 +62,7 @@ function ProductDetailsDialog({
               height={600}
               loading="lazy"
               decoding="async"
-              className="aspect-square w-full object-cover"
+              className="aspect-square w-full object-contain bg-muted/30"
             />
             {productDetails?.salePrice > 0 ? (
               <span className="absolute left-4 top-4 rounded-full bg-gold px-3 py-1 text-[11px] font-semibold uppercase tracking-[0.12em] text-[#2b0f1e]">

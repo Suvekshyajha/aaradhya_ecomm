@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import bannerImage from "../../assets/d2.webp";
+import bannerImage from "../../assets/logincover.webp";
 
 function AuthLayout() {
   return (

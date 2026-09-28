@@ -1,0 +1,126 @@
+(function lazyLoadSuperLemon(window, document) {
+  'use strict';
+
+  var SUPERLEMON_SCRIPT_ID = 'superlemon-script';
+  var SUPERLEMON_STYLE_ID = 'superlemon-stylesheet';
+  var FALLBACK_DELAY_MS = 3000;
+  var STYLE_SETTLE_TIMEOUT_MS = 3000;
+  var lazyLoadEvents = [
+    'wheel',
+    'keydown',
+    'keyup',
+    'mousemove',
+    'touchend',
+    'touchmove',
+    'mousedown'
+  ];
+  var addListenerOptions = { once: true, passive: true, capture: true };
+  var removeListenerOptions = { capture: true };
+  var hasLoaded = false;
+  var fallbackTimer = null;
+  var resolvedScriptSrc = resolveAssetSrc('superlemon.js');
+  var resolvedStyleSrc = resolveAssetSrc('superlemon.css');
+
+  function resolveAssetSrc(fileName) {
+    try {
+      var currentScript = document.currentScript;
+      if (currentScript && currentScript.src) {
+        return new URL(fileName, currentScript.src).toString();
+      }
+    } catch (error) {
+      // fall through to default path if URL construction fails
+    }
+    return fileName;
+  }
+
+  function appendStylesheet(done) {
+    var settled = false;
+    var settleTimer = null;
+    var link = null;
+
+    function settleOnce() {
+      if (settled) {
+        return;
+      }
+      settled = true;
+
+      if (settleTimer !== null) {
+        window.clearTimeout(settleTimer);
+        settleTimer = null;
+      }
+      if (link) {
+        link.onload = null;
+        link.onerror = null;
+      }
+
+      done();
+    }
+
+    if (document.getElementById(SUPERLEMON_STYLE_ID)) {
+      settleOnce();
+      return;
+    }
+
+    link = document.createElement('link');
+    link.id = SUPERLEMON_STYLE_ID;
+    link.rel = 'stylesheet';
+    link.href = resolvedStyleSrc;
+    link.onload = settleOnce;
+    link.onerror = settleOnce;
+
+    settleTimer = window.setTimeout(settleOnce, STYLE_SETTLE_TIMEOUT_MS);
+
+    var target = document.head || document.documentElement;
+    target.appendChild(link);
+  }
+
+  function appendScript() {
+    if (document.getElementById(SUPERLEMON_SCRIPT_ID)) {
+      return;
+    }
+
+    var script = document.createElement('script');
+    script.id = SUPERLEMON_SCRIPT_ID;
+    script.defer = true;
+    script.src = resolvedScriptSrc;
+
+    var target = document.body || document.head || document.documentElement;
+    target.appendChild(script);
+  }
+
+  function cleanupListeners() {
+    lazyLoadEvents.forEach(function (eventName) {
+      window.removeEventListener(eventName, loadSuperLemon, removeListenerOptions);
+    });
+
+    if (fallbackTimer !== null) {
+      window.clearTimeout(fallbackTimer);
+      fallbackTimer = null;
+    }
+  }
+
+  function loadSuperLemon() {
+    if (hasLoaded) {
+      return;
+    }
+
+    hasLoaded = true;
+    cleanupListeners();
+    appendStylesheet(appendScript);
+  }
+
+  function attachListeners() {
+    lazyLoadEvents.forEach(function (eventName) {
+      window.addEventListener(eventName, loadSuperLemon, addListenerOptions);
+    });
+
+    fallbackTimer = window.setTimeout(loadSuperLemon, FALLBACK_DELAY_MS);
+  }
+
+  if (document.getElementById(SUPERLEMON_SCRIPT_ID)) {
+    hasLoaded = true;
+    return;
+  }
+
+  attachListeners();
+})(window, document);

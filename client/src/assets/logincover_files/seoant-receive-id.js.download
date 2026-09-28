@@ -1,0 +1,2 @@
+/*! seoant-receive-id (simplified: 去掉打包进来的 axios，改用原生 fetch；行为保持一致) */
+!function(){var e=window.location.href;if(-1!==e.indexOf("seogid")){var t=e.split("seogid")[1];if(null!=t){var n=document.currentScript&&document.currentScript.dataset.shop||"";window.history.pushState({},"",window.location.pathname+window.location.search);fetch("/a/p/receive_id?shop="+encodeURIComponent(n)+"&code="+encodeURIComponent("")+"&seogid="+encodeURIComponent(t),{method:"GET"}).catch(function(){})}}}();

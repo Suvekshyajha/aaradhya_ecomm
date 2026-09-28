@@ -174,14 +174,14 @@ function App() {
     dispatch(checkAuth());
   }, [dispatch]);
 
-  if (isLoading) return <Skeleton className="w-[800] bg-black h-[600px]" />;
+  if (isLoading) return <Skeleton className="w-full h-screen bg-[hsl(36,33%,98%)]" />;
 
   console.log(isLoading, user);
   return (
     <div className="flex flex-col overflow-hidden bg-white">
       <RouteChangeTracker />
       <Suspense
-        fallback={<Skeleton className="w-full bg-black h-[600px]" />}
+        fallback={<Skeleton className="w-full h-screen bg-[hsl(36,33%,98%)]" />}
       >
         <Routes>
         <Route

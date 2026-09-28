@@ -1,0 +1,1567 @@
+:root {
+  --turbo_bundles_primary_color: #2a2a2a;
+  --turbo_bundles_secondary_color: #7e8494;
+  --turbo_bundles_highlight_color: #ffc107;
+  --turbo_bundles_selection_highlight_color: #ff6f00;
+  --turbo_bundles_ribbon_background_color: #ff6f00;
+  --turbo_bundles_ribbon_color: #ffffff;
+  --turbo_bundles_ribbon-font-size: 14px;
+  --turbo_bundles_variant_border_color: #e0e0e0;
+  --turbo_bundles_variant_background_color: #ffffff;
+  --turbo_bundles_variant_title_color: #333333;
+  --turbo_bundles_variant_value_color: #555555;
+  --turbo_bundles_variant_title-font-size: 16px;
+  --turbo_bundles_variant_value-font-size: 14px;
+  --turbo_bundles_variant_border-radius: 8px;
+  --turbo_bundles_background_color: #fafafa;
+  --turbo_bundles_item-font-size: 18px;
+  --turbo_bundles_item-font-weight: 600;
+  --turbo_bundles_description-font-size: 15px;
+  --turbo_bundles_description-font-weight: 400;
+  --turbo_bundles_price-font-size: 20px;
+  --turbo_bundles_price-font-weight: 600;
+  --turbo_bundles_font-family: 'Helvetica Neue', sans-serif;
+  --turbo_bundles_border-radius: 8px;
+  --turbo_bundles_border-width: 1px;
+  --turbo_bundles_border-style: solid;
+  --turbo_bundles_border-color: #e0e0e0;
+  --turbo_bundles_selected-border-width: 2px;
+  --turbo_bundles_selected-border-style: solid;
+  --turbo_bundles_selected-border-color: #ff6f00;
+  --turbo_bundles_selected-background-color: #ffffff;
+  --turbo_bundles_box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  --turbo_bundles_min-height: auto;
+  --turbo_bundles_item_padding: 16px;
+  --turbo_bundles_block_title-font-size: 20px;
+  --turbo_bundles_block_title_color: #2a2a2a;
+  --turbo_bundles_block_width: 100%;
+  --turbo_bundles_free_gift_title_font_size: 13px;
+  --turbo_bundles_free_gift_badge_font_size: 12px;
+  --turbo_bundles_free_gift_row_padding: 8px;
+}
+
+.turbo-bundles-app {
+  width: 100%;
+}
+
+.hidden-turbo-bundles-extension {
+  display: none;
+}
+
+.turbo-bundles-wrapper {
+  width: var(--turbo_bundles_block_width, 100%);
+  max-width: 100%;
+  margin: 24px 0;
+  line-height: 1.4;
+}
+
+.turbo-bundles-items {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px;
+}
+
+.turbo-bundles-item-wrapper {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  border-radius: var(--turbo_bundles_border-radius);
+  min-width: 0;
+}
+
+.turbo-bundles-item {
+  display: flex;
+  border-width: var(--turbo_bundles_border-width);
+  border-style: var(--turbo_bundles_border-style);
+  border-color: var(--turbo_bundles_border-color);
+  border-radius: var(--turbo_bundles_border-radius);
+  background-color: var(--turbo_bundles_background_color);
+  padding: var(--turbo_bundles_item_padding);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: pointer;
+  font-family: var(--turbo_bundles_font-family);
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  gap: 8px;
+  min-height: var(--turbo_bundles_min-height);
+  text-align: left;
+}
+
+/* When inside a wrapper, the wrapper handles transitions */
+.turbo-bundles-item-wrapper > .turbo-bundles-item {
+  transition: none;
+  cursor: inherit;
+}
+
+.turbo-bundles-variant-line {
+  display: flex;
+  align-items: center;
+}
+
+.turbo-bundles-variant-number {
+  margin-right: 8px;
+}
+
+.turbo-bundles-variant-selects {
+  display: flex;
+  gap: 8px;
+}
+
+.turbo-bundles-variant-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  border-radius: var(--turbo_bundles_variant_border-radius);
+  border: none;
+  box-shadow: 0 0 0 1px var(--turbo_bundles_variant_border_color);
+  color: var(--turbo_bundles_variant_value_color);
+  font-size: var(--turbo_bundles_variant_value-font-size);
+  height: auto;
+  line-height: normal !important;
+  margin: 2.5px 0 !important;
+  min-width: 80px;
+  max-width: 120px;
+  min-height: auto;
+  outline: none;
+  padding: 8px 28px 8px 8px !important;
+  text-overflow: ellipsis;
+  width: auto;
+  background-image: url("data:image/svg+xml;utf8,<svg width='10' height='4' viewBox='0 0 10 4' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 4L0.669872 0.25L9.33013 0.249999L5 4Z' fill='black'/></svg>");
+  background-color: var(--turbo_bundles_variant_background_color);
+  background-position: right 8px center !important;
+  background-repeat: no-repeat !important;
+  background-size: initial;
+}
+
+.turbo-bundles-variant-select option {
+  white-space: pre-wrap;
+  text-wrap-style: initial;
+  word-break: break-all;
+}
+
+/* HTML: <div class="ribbon">Your text content</div> */
+.turbo-bundles-ribbon {
+  --f: 12px;
+  --r: 14px; /* control the cutout */
+  position: absolute;
+  right: 10px;
+  top: -12px;
+  padding: 6px 10px 0;
+  border: solid #0000;
+  border-width: 0 calc(2*var(--f)) var(--r) 0;
+  background:
+    radial-gradient(50% 100% at bottom,#0005 98%,#0000 101%)
+    100% 0/calc(2*var(--f)) var(--f) no-repeat border-box;
+  background-color: var(--turbo_bundles_ribbon_background_color);
+  border-radius: calc(10px + var(--f)) var(--f) 0 0;
+  clip-path: polygon(100% 0,0 0,0 calc(0% - var(--r)),calc(0% - var(--f)) 80%,calc(100% - 2*var(--f)) calc(100% - var(--r)),calc(100% - 2*var(--f)) var(--f),100% var(--f));
+  font-size: var(--turbo_bundles_ribbon-font-size);
+  font-weight: var(--turbo_bundles_item-font-weight);
+  font-family: var(--turbo_bundles_font-family);
+  color: var(--turbo_bundles_ribbon_color);
+}
+
+.turbo-bundles-ribbon-text {
+  transform: rotate(-2deg);
+}
+
+.turbo-bundles-item-wrapper:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+
+.turbo-bundles-item:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 4px 10px rgba(0,0,0,.1);
+}
+
+/* When inside a wrapper, item doesn't hover independently */
+.turbo-bundles-item-wrapper > .turbo-bundles-item:hover {
+  transform: none;
+  box-shadow: none;
+}
+
+/* Increase border size and change border color when radio is checked */
+.turbo-bundles-item.selected {
+  border-width: var(--turbo_bundles_selected-border-width);
+  border-style: var(--turbo_bundles_selected-border-style);
+  border-color: var(--turbo_bundles_selected-border-color);
+  background-color: var(--turbo_bundles_selected-background-color);
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.turbo-bundles-item.out-of-stock {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.turbo-bundles-item.out-of-stock input[type="radio"] {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+.turbo-bundles-item__details {
+  display: flex;
+  width: 100%;
+  margin-right: 16px;
+}
+
+.turbo-bundles-variants-names, .turbo-bundles-variant-number {
+  color: var(--turbo_bundles_variant_title_color);
+  font-size: var(--turbo_bundles_variant_title-font-size);
+}
+
+.turbo-bundles-variants-block {
+  display: none;
+}
+
+.turbo-bundles-item.selected .turbo-bundles-variants-block {
+  display: block !important;
+}
+
+/* Typography */
+.turbo-bundles-item__details-title-block {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: center; /* vertical alignment */
+}
+
+
+.turbo-bundles-item__details-title {
+  font-weight: var(--turbo_bundles_item-font-weight);
+  font-size: var(--turbo_bundles_item-font-size);
+  color: var(--turbo_bundles_primary_color);
+}
+
+.turbo-bundles-mix .turbo-bundles-item__details-title {
+  text-align: center;
+}
+
+.turbo-bundles-item__details-subtitle:not(:empty) {
+  margin-top: 4px;
+}
+
+.turbo-bundles-item__details-subtitle {
+  font-weight: var(--turbo_bundles_description-font-weight);
+  font-size: var(--turbo_bundles_description-font-size);
+  color: var(--turbo_bundles_secondary_color);
+}
+
+/* Pricing block styling */
+.turbo-bundles-item__details-pricing-block {
+  display: flex;
+  gap: 4px;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.turbo_bundles-item__details-discounted-price {
+  font-size: var(--turbo_bundles_price-font-size);
+  font-weight: var(--turbo_bundles_price-font-weight);
+  color: var(--turbo_bundles_highlight_color);
+}
+
+.turbo_bundles-item__details-standard-price {
+  font-size: var(--turbo_bundles_price-font-size);
+  font-weight: var(--turbo_bundles_price-font-weight);
+  color: var(--turbo_bundles_primary_color);
+}
+
+.turbo_bundles-item__details-discounted-price.active {
+  color: var(--turbo_bundles_selection_highlight_color); /* Active state accent */
+}
+
+.turbo_bundles-item__details-compare_at-price {
+  font-size: var(--turbo_bundles_description-font-size);
+  font-weight: var(--turbo_bundles_description-font-weight);
+  color: var(--turbo_bundles_secondary_color);
+  text-decoration: line-through;
+}
+
+.turbo-bundles-item__badge {
+  top: -25px;
+  right: -15px;
+  position: absolute;
+  z-index: 1;
+  width: 60px;
+  height: 60px;
+}
+
+/* badge style */
+.turbo-bundles-badge-wrapper {
+  width: fit-content;
+  padding: 2px 6px;
+  border-radius: 6px;
+  gap: 4px;
+  perspective: 1000px;
+  background-color: var(--turbo_bundles_badge_text_bg_color);
+}
+
+.turbo-bundles-item__price-badge {
+  color: var(--turbo_bundles_badge_text_color);
+  font-size: var(--turbo_bundles_badge_text_size);
+}
+
+/* Flexbox container to align details and radio button inline */
+.turbo-bundles-item__flex {
+  display: flex;
+  align-items: center; /* Vertically aligns items in the center */
+  gap: 12px;
+}
+
+
+/* Bundle item custom image */
+.turbo-bundles-item__custom-image {
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-shrink: 0;
+  margin-right: 8px;
+}
+
+/* Custom Radio Button Wrapper */
+.turbo-bundles-radio-button-wrapper {
+  display: flex !important;
+  position: relative;
+  cursor: pointer;
+  width: 30px; /* Fixed width */
+  height: 20px; /* Fixed height */
+  margin: 0 8px;
+}
+
+/* Hide the native radio button */
+.turbo-bundles-radio-button {
+  position: absolute;
+  opacity: 0 !important;
+  cursor: pointer;
+  width: 30px;
+  height: 20px;
+}
+
+/* Custom radio button appearance */
+.turbo-bundles-radio-button-wrapper::before {
+  content: "";
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid #999;
+  background-color: #fff; /* Neutral background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+  transition: background-color .2s ease-in-out, border-color .2s ease-in-out, box-shadow .2s ease-in-out;
+  box-sizing: border-box;
+}
+
+.turbo-bundles-radio-button:hover~.turbo-bundles-radio-button-wrapper::before {
+  box-shadow: 0 0 0 2px rgba(0,123,255,.1);
+}
+
+/* Active state for selected radio button */
+.turbo-bundles-radio-button:checked ~ .turbo-bundles-radio-button-wrapper::before {
+  background-color: var(--turbo_bundles_selection_highlight_color); /* Accent color when selected */
+  border-color: var(--turbo_bundles_selection_highlight_color);
+}
+
+/* Circle inside the selected radio button */
+.turbo-bundles-radio-button:checked ~ .turbo-bundles-radio-button-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: #fff;
+}
+
+.color-picker-popover {
+  padding: 10px;
+}
+
+.color-picker-input-wrapper {
+  margin: 10px 5px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.color-picker-color-value {
+  width: 130px;
+/*  flex: 2;*/
+}
+
+.color-picker-transparent-value {
+  width: 90px;
+}
+
+.color-picker-color-block {
+  height: 32px;
+  width: 106px;
+  border-radius: 5px;
+  border: 1px lightgray solid;
+  cursor: pointer;
+}
+
+
+.setupItem {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.setupItem:hover {
+  background-color: #f7f7f7;
+}
+
+.setupItemExpanded:hover {
+  background-color: inherit;
+}
+
+.completeButton {
+  width: 1.5rem;
+  height: 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #303030;
+}
+
+.itemContent {
+  width: 100%;
+  display: flex;
+  gap: 8rem;
+  justify-content: space-between;
+}
+
+/* These styles take into account the Shopify sidebar visibility & hides image based on window width */
+@media (min-width: 48em) and (max-width: 61.871875em) {
+  .itemImage {
+    display: none;
+  }
+}
+
+@media (max-width: 45.625em) {
+  .itemImage {
+    display: none;
+  }
+}
+
+/* ===== MIX & MATCH STYLES ===== */
+
+.mix-radio-group {
+  display: inline-flex;
+  align-items: center;
+  gap: 0;
+  justify-self: start;
+}
+
+.mix-radio-wrapper {
+  margin-left: 6px;
+}
+
+.mix-top-prices-inline {
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 8px;
+  grid-column: 2;
+  justify-self: end;
+  min-width: 0;
+  overflow: hidden;
+  text-align: right;
+}
+
+.mix-topbar {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  align-items: center;
+  gap: 12px;
+  overflow: hidden;
+}
+
+/* Per-item price style like compare-at (without strike) */
+.mix-item-unit-price {
+  text-align: center;
+  margin-top: 6px;
+  font-size: var(--turbo_bundles_description-font-size);
+  font-weight: var(--turbo_bundles_description-font-weight);
+  color: var(--turbo_bundles_secondary_color);
+}
+
+/* Small spacing above selector only for mix */
+.turbo-bundles-mix .mix-item-col .turbo-bundles-variant-wrapper {
+  margin-top: 6px;
+}
+
+.mix-nav-container {
+  position: relative;
+}
+
+.mix-nav {
+  background: var(--turbo_bundles_primary_color, #222);
+  color: #fff;
+  border: none;
+  width: 40px;
+  height: 40px;
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.mix-nav:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.turbo-bundles-mix .mix-and-match-items {
+  display: flex;
+  gap: 12px;
+  overflow-x: hidden; /* disable manual horizontal scroll */
+  padding: 8px 56px 8px; /* space for arrows + avoid box-shadow clipping */
+}
+
+/* Ensure scroller expands between arrows */
+.mix-nav-container .mix-and-match-items {
+  width: 100%;
+  max-width: 600px; /* Reasonable max width for product pages */
+  min-width: 0;
+  overflow: hidden;
+}
+
+.mix-prev {
+  left: 8px;
+}
+
+.mix-next {
+  right: 8px;
+}
+
+.mix-and-match-items {
+  scroll-behavior: smooth;
+  touch-action: none; /* prevent touch panning */
+  overscroll-behavior: contain;
+}
+
+.turbo-bundles-mix .mix-item {
+  min-width: 280px;
+  border-width: var(--turbo_bundles_border-width);
+  border-style: var(--turbo_bundles_border-style);
+  border-color: var(--turbo_bundles_border-color);
+  border-radius: var(--turbo_bundles_border-radius);
+  background-color: var(--turbo_bundles_background_color);
+  box-shadow: var(--turbo_bundles_box-shadow);
+  padding: var(--turbo_bundles_item_padding);
+}
+
+/* Fix selected state for mix items - higher specificity */
+.turbo-bundles-mix .mix-item.selected {
+  border-width: var(--turbo_bundles_selected-border-width);
+  border-style: var(--turbo_bundles_selected-border-style);
+  border-color: var(--turbo_bundles_selected-border-color);
+  background-color: var(--turbo_bundles_selected-background-color);
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.turbo-bundles-mix-claim {
+  margin-top: 8px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.turbo-bundles-mix-claim .turbo-bundles-mix-claim-btn {
+  background: var(--turbo_bundles_primary_color, #222);
+  color: #fff;
+  border: none;
+  padding: 8px 12px;
+  border-radius: var(--turbo_bundles_button_border_radius, 6px);
+  cursor: pointer;
+}
+
+/* Mix & match image row */
+.mix-row {
+  display: block;
+  width: 100%;
+}
+
+.mix-row.mix-row--single {
+  display: flex;
+  align-items: flex-end;
+}
+
+.mix-row.mix-row--multi {
+  display: block;
+  width: 100%;
+}
+
+.mix-bottom {
+  display: block;
+  width: 100%;
+}
+
+.mix-titles-row,
+.mix-images-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  margin-bottom: 8px;
+}
+
+.mix-titles-row:last-child,
+.mix-images-row:last-child {
+  margin-bottom: 0;
+}
+
+/* Each item column takes equal share of the row; 3 items ≈33%, 2 items ≈50% */
+.mix-item-col {
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  flex: 1 1 0;
+  min-width: 0;
+  justify-content: flex-end; /* Push all content to bottom */
+}
+
+/* Make title block take up remaining space and push content down */
+.mix-item-title {
+  font-weight: var(--turbo_bundles_description-font-weight);
+  font-size: var(--turbo_bundles_description-font-size);
+  color: var(--turbo_bundles_secondary_color);
+  text-align: center;
+  margin-bottom: 8px;
+  line-height: 1.2;
+  min-height: 2.4em; /* Ensure consistent height for 2 lines of text */
+  flex: 1; /* Take up all available space */
+  display: flex;
+  align-items: flex-end; /* Text aligns to bottom of title block */
+  justify-content: center;
+}
+
+.mix-item-image {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  box-shadow: 0 1px 2px rgba(0,0,0,.08);
+}
+
+.mix-plus {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--turbo_bundles_secondary_color);
+  font-weight: 600;
+  align-self: center;
+  flex-shrink: 0;
+  width: 24px;
+  height: auto; /* Let height be natural for better vertical centering */
+}
+
+/* Make selects fill the item column */
+.mix-item-col .turbo-bundles-variant-select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* make the radio show for mix combos */
+.mix-item .turbo-bundles-radio-button-wrapper {
+  margin-left: 4px;
+}
+
+/* Separate row for titles */
+.mix-titles-row {
+  display: flex;
+  gap: 12px;
+  align-items: flex-end; /* Align title baselines */
+}
+
+/* Separate row for images with plus signs */
+.mix-images-row {
+  display: flex;
+  gap: 12px;
+  align-items: center; /* This will center plus signs with images! */
+}
+
+.mix-item-col .mix-item-image {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+}
+
+/* Better handling for placeholder SVG images */
+.mix-item-col .mix-item-image[src*="mix-placeholder.svg"] {
+  object-fit: contain;
+  object-position: center;
+  background-color: #f7f7f9;
+}
+
+/* Current product styling */
+.mix-item-title.current-product {
+  font-weight: 700;
+}
+
+/* Spacer elements for layout alignment */
+.mix-spacer {
+  width: 24px;
+  min-width: 24px;
+  display: block !important; /* Ensure spacers are always visible */
+}
+
+.mix-spacer::before {
+  content: '\00a0'; /* Non-breaking space */
+}
+
+.mix-plus-container {
+  display: flex !important;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Mix item wrapper for variant selectors */
+.turbo-bundles-variant-wrapper {
+  margin-top: 6px;
+  width: 100%;
+}
+
+.mix-row.mix-row--single {
+  flex-direction: row;
+  align-items: flex-end;
+}
+
+.mix-row.mix-row--multi {
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mix-item-col--single {
+  flex: 1 1 0;
+  min-width: 0;
+}
+
+.mix-item-col--multi {
+  align-items: stretch;
+}
+
+/* ===== Multi-line spacing and plus alignment (theme extension) ===== */
+
+/* Add margin between rows (second row and beyond) */
+.mix-row + .mix-row {
+  margin-top: 10px;
+}
+
+/* Center plus signs vertically - align with center of images */
+
+/* Original horizontal layout for ≤3 items - keep flex-direction: row */
+.mix-bottom > .mix-row:only-child {
+  flex-direction: row;
+  align-items: center; /* Center align all items including images */
+  gap: 12px;
+}
+
+/* For horizontal layout, align plus signs with images */
+.mix-bottom > .mix-row:only-child .mix-plus {
+  align-self: center; /* Center within the row to align with images */
+}
+
+/* Ensure items don't overflow - set max width for each column */
+.mix-bottom > .mix-row:only-child .mix-item-col {
+  flex: 1 1 0;
+  min-width: 0; /* Allow flex items to shrink */
+  text-align: center;
+}
+
+/* Ensure content inside columns fits */
+.mix-bottom > .mix-row:only-child .mix-item-title {
+  font-size: 12px;
+  line-height: 1.2;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.mix-bottom > .mix-row:only-child .mix-item-image {
+  width: 60px;
+  height: 60px;
+  object-fit: cover;
+  margin: 0;
+  align-self: center;
+}
+
+.mix-bottom > .mix-row:only-child .turbo-bundles-variant-select {
+  width: 100%;
+  max-width: 80px;
+  font-size: 11px;
+}
+
+.mix-bottom > .mix-row:only-child .mix-item-unit-price {
+  font-size: 12px;
+}
+
+/* Quantity Selector Styles */
+.turbo-bundles-quantity-selector {
+  margin-bottom: 12px;
+  padding: 8px;
+  background-color: var(--turbo_bundles_background_color);
+  border: var(--turbo_bundles_border-width) var(--turbo_bundles_border-style) var(--turbo_bundles_border-color);
+  border-radius: var(--turbo_bundles_border-radius);
+  text-align: center;
+}
+
+.turbo-bundles-quantity-selector--bottom {
+  margin-top: 12px;
+  margin-bottom: 0;
+}
+
+.quantity-selector-label {
+  margin-bottom: 0px;
+  font-size: var(--turbo_bundles_variant_value-font-size);
+  font-weight: var(--turbo_bundles_item-font-weight);
+  color: var(--turbo_bundles_primary_color);
+}
+
+.quantity-selector-input .quantity-input-group {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  width: 100%;
+}
+
+.quantity-selector-input .quantity-input-wrapper {
+  flex: 1;
+  min-width: 60px;
+}
+
+.quantity-selector-input input[type="number"] {
+  text-align: center;
+  font-size: var(--turbo_bundles_item-font-size);
+  font-weight: var(--turbo_bundles_item-font-weight);
+  padding: 6px 8px;
+  border: var(--turbo_bundles_border-width) var(--turbo_bundles_border-style) var(--turbo_bundles_border-color);
+  border-radius: var(--turbo_bundles_variant_border-radius);
+  background-color: var(--turbo_bundles_variant_background_color);
+  color: var(--turbo_bundles_primary_color);
+  width: 100%;
+  box-sizing: border-box;
+  height: 32px;
+  /* Hide native number input arrows */
+  -webkit-appearance: textfield;
+  -moz-appearance: textfield;
+  appearance: textfield;
+}
+
+.quantity-selector-input input[type="number"]::-webkit-outer-spin-button,
+.quantity-selector-input input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+.quantity-selector-input input[type="number"]:focus {
+  outline: none;
+  border-color: var(--turbo_bundles_selection_highlight_color);
+  box-shadow: 0 0 0 2px rgba(255, 111, 0, 0.2);
+}
+
+.quantity-selector-input button {
+  border-radius: var(--turbo_bundles_variant_border-radius);
+  min-width: 28px !important;
+  min-height: 32px !important;
+  height: 32px !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--turbo_bundles_border-width) var(--turbo_bundles_border-style) var(--turbo_bundles_border-color) !important;
+  background-color: var(--turbo_bundles_variant_background_color) !important;
+  color: var(--turbo_bundles_primary_color) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--turbo_bundles_item-font-size) !important;
+  font-weight: var(--turbo_bundles_item-font-weight) !important;
+}
+
+.turbo-bundles-app .quantity-selector-input button:before,
+.turbo-bundles-app .quantity-decrement:before,
+.turbo-bundles-app .quantity-increment:before {
+  content: none !important;
+}
+
+.quantity-selector-input button:hover:not(:disabled) {
+  background-color: var(--turbo_bundles_background_color);
+  border-color: var(--turbo_bundles_selection_highlight_color);
+}
+
+.quantity-selector-input button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-selector-input {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.quantity-selector-input .quantity-selector-label {
+  flex: 0 0 auto;
+  width: 100px;
+  text-align: center;
+}
+
+.quantity-decrement,
+.quantity-increment {
+  border-radius: var(--turbo_bundles_variant_border-radius);
+  min-width: 28px;
+  height: 32px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: var(--turbo_bundles_border-width) var(--turbo_bundles_border-style) var(--turbo_bundles_border-color) !important;
+  background-color: var(--turbo_bundles_variant_background_color) !important;
+  color: var(--turbo_bundles_primary_color) !important;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-size: var(--turbo_bundles_item-font-size) !important;
+  font-weight: var(--turbo_bundles_item-font-weight) !important;
+  margin: 0;
+}
+
+.quantity-decrement:hover:not(:disabled),
+.quantity-increment:hover:not(:disabled) {
+  background-color: var(--turbo_bundles_background_color);
+  border-color: var(--turbo_bundles_selection_highlight_color);
+}
+
+.quantity-decrement:disabled,
+.quantity-increment:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.quantity-selector-slider {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0 16px;
+}
+
+.quantity-selector-slider .quantity-selector-label {
+  flex: 0 0 auto;
+  width: 100px;
+  text-align: center;
+}
+
+.quantity-selector-slider .quantity-decrement,
+.quantity-selector-slider .quantity-increment {
+  flex-shrink: 0;
+}
+
+.quantity-selector-range {
+  flex: 1;
+  height: 6px;
+  border-radius: 3px;
+  background-color: var(--turbo_bundles_border-color);
+  outline: none;
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+.quantity-selector-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--turbo_bundles_selection_highlight_color);
+  background-color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.quantity-selector-range::-moz-range-thumb {
+  width: 20px;
+  height: 20px;
+  border-radius: 50%;
+  border: 2px solid var(--turbo_bundles_selection_highlight_color);
+  background-color: #ffffff;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+/* Slider buttons are now inline with the slider */
+
+/* Block Title */
+.turbo-bundles-block-title {
+  font-size: var(--turbo_bundles_block_title-font-size);
+  color: var(--turbo_bundles_block_title_color);
+  font-family: var(--turbo_bundles_font-family);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 20px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid rgba(0, 0, 0, 0.08);
+  position: relative;
+}
+
+.turbo-bundles-block-title:after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 2px;
+  background: var(--turbo_bundles_block_title_color);
+}
+
+/* Frequently Bought Together Preview Styles */
+.turbo-bundles-fbt .turbo-bundles-item__details {
+  margin-right: 0;
+  justify-content: space-between;
+  align-items: center;
+  gap: 5px;
+}
+
+.turbo-bundles-item__details-product-block {
+  display: grid;
+  grid-template-columns: 64px 1fr;
+  align-items: center;
+  column-gap: 12px;
+  flex: 1 1 auto; /* take remaining space between checkbox and prices */
+  min-width: 0; /* Allow grid to shrink below content size */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.turbo-bundles-item__details-photo {
+  width: 64px;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  flex-shrink: 0; /* Photo should never shrink */
+}
+
+.turbo-bundles-item__details-product-content {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+  min-width: 0; /* Critical: allows flex item to shrink below content size */
+  overflow: hidden; /* Prevent overflow */
+}
+
+.turbo-bundles-item__details-product-title {
+  font-weight: var(--turbo_bundles_description-font-weight);
+  font-size: var(--turbo_bundles_description-font-size);
+  color: var(--turbo_bundles_primary_color);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  min-width: 0; /* Required for text-overflow to work in flexbox/grid */
+}
+
+.turbo-bundles-item__details-product-title a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.turbo-bundles-item__details-product-title a:hover {
+  color: inherit;
+  text-decoration: none;
+}
+
+.turbo-bundles-item__details-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.turbo-bundles-fbt .turbo-bundles-variant-select {
+  margin: 3px 1px !important
+ }
+
+.turbo-bundles-item__details-title {
+  font-weight: var(--turbo_bundles_item-font-weight);
+  font-size: var(--turbo_bundles_item-font-size);
+  color: var(--turbo_bundles_primary_color);
+}
+.tb-checkbox-wrapper *,
+.tb-checkbox-wrapper ::after,
+.tb-checkbox-wrapper ::before {
+  box-sizing: border-box;
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox {
+  margin: 0;
+  width: 0;
+  height: 0;
+  display: inline;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox + label:before {
+  content: "";
+  display: inline-block;
+  vertical-align: top;
+  height: var(--turbo_bundles_checkbox_size, 20px);
+  width: var(--turbo_bundles_checkbox_size, 20px);
+  margin-right: 0.6em;
+  color: var(--turbo_bundles_checkbox_color, rgba(0, 0, 0, 0.275));
+  border: solid 0.06em;
+  box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em inset, 0 0 0 0.07em transparent inset;
+  border-radius: 0.2em;
+  background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xml:space="preserve" fill="white" viewBox="0 0 9 9"><rect x="0" y="4.3" transform="matrix(-0.707 -0.7072 0.7072 -0.707 0.5891 10.4702)" width="4.3" height="1.6" /><rect x="2.2" y="2.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 12.1877 2.9833)" width="6.1" height="1.7" /></svg>') no-repeat center, white;
+  background-size: 0;
+  will-change: color, border, background, background-size, box-shadow;
+  transform: translate3d(0, 0, 0);
+  transition: color 0.1s, border 0.1s, background 0.15s, box-shadow 0.1s;
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:enabled:active + label:before,
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:enabled + label:active:before {
+  box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset, 0 0 0 0.07em rgba(0, 0, 0, 0.1) inset;
+  background-color: #f0f0f0;
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:checked + label:before {
+  background-color: var(--turbo_bundles_checkbox_color, #3B99FC);
+  background-size: 0.75em;
+  color: rgba(0, 0, 0, 0.075);
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:checked:enabled:active + label:before,
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:checked:enabled + label:active:before {
+  background-color: var(--turbo_bundles_checkbox_color, #0a7ffb);
+  color: rgba(0, 0, 0, 0.275);
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:focus + label:before {
+  box-shadow:
+    0 0 0.04em,
+    0 0.06em 0.16em -0.03em transparent inset,
+    0 0 0 0.07em rgba(0, 0, 0, 0.1) inset,
+    0 0 0 3.3px color-mix(in srgb, var(--turbo_bundles_checkbox_color, #3B99FC) 55%, transparent),
+    0 0 0 5px color-mix(in srgb, var(--turbo_bundles_checkbox_color, #3B99FC) 30%, transparent);
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:focus:active + label:before,
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:focus + label:active:before {
+  box-shadow:
+    0 0 0.04em,
+    0 0.06em 0.16em -0.03em transparent inset,
+    0 0 0 0.07em rgba(0, 0, 0, 0.1) inset,
+    0 0 0 3.3px color-mix(in srgb, var(--turbo_bundles_checkbox_color, #3B99FC) 55%, transparent),
+    0 0 0 5px color-mix(in srgb, var(--turbo_bundles_checkbox_color, #3B99FC) 30%, transparent);
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:disabled + label:before {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox:disabled + label {
+  cursor: not-allowed;
+}
+
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox.dark + label:before {
+  color: rgba(255, 255, 255, 0.275);
+  background-color: #222;
+  background-image: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xml:space="preserve" fill="rgba(34, 34, 34, 0.999)" viewBox="0 0 9 9"><rect x="0" y="4.3" transform="matrix(-0.707 -0.7072 0.7072 -0.707 0.5891 10.4702)" width="4.3" height="1.6" /><rect x="2.2" y="2.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 12.1877 2.9833)" width="6.1" height="1.7" /></svg>');
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox.dark:enabled:active + label:before,
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox.dark:enabled + label:active:before {
+  background-color: #444;
+  box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset, 0 0 0 0.07em rgba(255, 255, 255, 0.1) inset;
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox.dark:checked + label:before {
+  background-color: var(--turbo_bundles_checkbox_color, #a97035);
+  color: rgba(255, 255, 255, 0.075);
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox.dark:checked:enabled:active + label:before,
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox.dark:checked:enabled + label:active:before {
+  background-color: var(--turbo_bundles_checkbox_color, #c68035);
+  color: rgba(0, 0, 0, 0.275);
+}
+.tb-checkbox-wrapper [type=checkbox].tb-checkbox + label {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.turbo-bundles-fbt .turbo-bundles-item__flex {
+  gap: 12px;
+}
+
+.turbo-bundles-fbt .tb-checkbox-wrapper {
+  display: flex;
+  align-items: center;
+}
+
+.turbo-bundles-fbt .tb-checkbox-wrapper [type=checkbox].tb-checkbox + label:before {
+  vertical-align: middle;
+  margin: 0;
+}
+
+/* FBT Button */
+.turbo-bundles-fbt-button-wrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.turbo-bundles-fbt-button {
+  width: 100%;
+  background-color: var(--turbo_bundles_button_bg_color, #222);
+  color: var(--turbo_bundles_button_text_color, #fff);
+  border: none;
+  padding: 12px 16px;
+  border-radius: var(--turbo_bundles_button_border_radius, 6px);
+  cursor: pointer;
+  font-size: var(--turbo_bundles_button_font_size, 14px);
+  font-weight: 600;
+  font-family: var(--turbo_bundles_font-family);
+  transition: opacity 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.turbo-bundles-fbt-button:hover {
+  opacity: 0.9;
+}
+
+.turbo-bundles-fbt-button:active {
+  transform: scale(0.98);
+}
+
+.turbo-bundles-fbt-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.turbo-bundles-fbt .turbo-bundles-items {
+  gap: 7px;
+}
+
+.turbo-bundles-fbt .turbo-bundles-item-wrapper:hover {
+  transform: none;
+  box-shadow: none;
+  cursor: default;
+}
+
+/* FBT Button Loading State */
+.turbo-bundles-fbt-button.loading {
+  opacity: 0.7;
+  cursor: not-allowed;
+  position: relative;
+}
+
+.fbt-spinner {
+  display: inline-block;
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #fff;
+  border-radius: 50%;
+  animation: fbt-spin 0.6s linear infinite;
+  vertical-align: middle;
+}
+
+@keyframes fbt-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Sold out state for FBT items */
+.turbo-bundles-item.out-of-stock {
+  opacity: 0.6;
+}
+
+.turbo-bundles-item.out-of-stock .turbo-bundles-item__details-photo img {
+  filter: grayscale(100%);
+  opacity: 0.7;
+}
+
+.turbo-bundles-sold-out-badge {
+  display: inline-block;
+  margin-left: 8px;
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 600;
+  color: #fff;
+  background-color: #dc3545;
+  border-radius: 4px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+/* Free gift indicator — attached below .turbo-bundles-item */
+.turbo-bundles-free-gift-indicator {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: var(--turbo_bundles_free_gift_row_padding, 8px);
+  background-color: var(--turbo_bundles_free_gift_bg_color, #f0fdf4);
+  border-top: 1px solid var(--turbo_bundles_free_gift_border_color, #bbf7d0);
+  border-radius: 0;
+  font-size: 13px;
+  line-height: 1;
+  font-family: var(--turbo_bundles_font-family, inherit);
+}
+
+.turbo-bundles-free-gift-indicator:last-child {
+  border-radius: 0 0 var(--turbo_bundles_border-radius) var(--turbo_bundles_border-radius);
+}
+
+/* When wrapper has a gift indicator, move border to wrapper level */
+.turbo-bundles-item-wrapper:has(.turbo-bundles-free-gift-indicator) {
+  border-width: var(--turbo_bundles_border-width);
+  border-style: var(--turbo_bundles_border-style);
+  border-color: var(--turbo_bundles_border-color);
+}
+
+.turbo-bundles-item-wrapper:has(.turbo-bundles-free-gift-indicator) > .turbo-bundles-item {
+  border: none;
+  border-radius: var(--turbo_bundles_border-radius) var(--turbo_bundles_border-radius) 0 0;
+}
+
+/* Selected state on wrapper when gift indicator is present */
+.turbo-bundles-item-wrapper:has(.turbo-bundles-free-gift-indicator):has(.selected) {
+  border-width: var(--turbo_bundles_selected-border-width);
+  border-style: var(--turbo_bundles_selected-border-style);
+  border-color: var(--turbo_bundles_selected-border-color);
+  box-shadow: 0 2px 10px rgba(0,0,0,.1);
+}
+
+.turbo-bundles-item-wrapper:has(.turbo-bundles-free-gift-indicator) > .turbo-bundles-item.selected {
+  border: none;
+  box-shadow: none;
+}
+
+.turbo-bundles-free-gift-indicator__image {
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  object-fit: cover;
+  flex-shrink: 0;
+  border: 1px solid var(--turbo_bundles_free_gift_border_color, #bbf7d0);
+}
+
+.turbo-bundles-free-gift-indicator__label {
+  color: var(--turbo_bundles_free_gift_text_color, #15803d);
+  font-weight: 600;
+  font-size: var(--turbo_bundles_free_gift_title_font_size, 13px);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  flex: 1;
+  min-width: 0;
+}
+
+.turbo-bundles-free-gift-indicator__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 3px;
+  padding: 2px 8px;
+  background-color: var(--turbo_bundles_free_gift_badge_color, #16a34a);
+  color: var(--turbo_bundles_free_gift_badge_text_color, #fff);
+  font-weight: 700;
+  font-size: var(--turbo_bundles_free_gift_badge_font_size, 12px);
+  border-radius: 20px;
+  white-space: nowrap;
+  flex-shrink: 0;
+  margin-left: auto;
+}
+
+.turbo-bundles-free-gift-variant-selectors {
+  display: none;
+  flex-direction: column;
+  gap: 6px;
+  width: 100%;
+  padding-top: 6px;
+}
+
+.turbo-bundles-item-wrapper:has(.selected) .turbo-bundles-free-gift-variant-selectors {
+  display: flex;
+}
+
+.turbo-bundles-free-gift-variant-row {
+  display: flex;
+  align-items: center;
+}
+
+.turbo-bundles-free-gift-variant-row .turbo-bundles-variant-number {
+  margin-right: 8px;
+  flex-shrink: 0;
+}
+
+.turbo-bundles-free-gift-variant-select {
+  -moz-appearance: none;
+  -webkit-appearance: none;
+  appearance: none;
+  flex: 1;
+  min-width: 0;
+  border-radius: var(--turbo_bundles_variant_border-radius);
+  border: none;
+  box-shadow: 0 0 0 1px var(--turbo_bundles_variant_border_color);
+  color: var(--turbo_bundles_variant_value_color);
+  font-size: var(--turbo_bundles_variant_value-font-size);
+  font-family: var(--turbo_bundles_font-family, inherit);
+  height: auto;
+  line-height: normal !important;
+  min-height: auto;
+  outline: none;
+  padding: 8px 28px 8px 8px !important;
+  text-overflow: ellipsis;
+  background-image: url("data:image/svg+xml;utf8,<svg width='10' height='4' viewBox='0 0 10 4' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M5 4L0.669872 0.25L9.33013 0.249999L5 4Z' fill='black'/></svg>");
+  background-color: var(--turbo_bundles_variant_background_color);
+  background-position: right 8px center !important;
+  background-repeat: no-repeat !important;
+  background-size: initial;
+  cursor: pointer;
+}
+
+.turbo-bundles-free-gift-indicator--oos {
+  opacity: 0.6;
+}
+
+.turbo-bundles-free-gift-indicator__oos {
+  width: 100%;
+  text-align: center;
+  font-size: 12px;
+  font-weight: 600;
+  color: #b91c1c;
+  background-color: #fef2f2;
+  border: 1px solid #fecaca;
+  border-radius: 4px;
+  padding: 4px 8px;
+  margin-top: 2px;
+}
+
+/* ============================================================
+   Pick-Any (claim flow) widget
+   ============================================================ */
+
+.turbo-bundles-pick-any .pick-any-tiers {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.turbo-bundles-pick-any .pick-any-tier {
+  cursor: pointer;
+}
+
+/* Tier whose `data-tier-quantity` exceeds the pool's available stock.
+   Dimmed + non-interactive; the in-card notice explains why. */
+.turbo-bundles-pick-any .pick-any-tier--disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+.turbo-bundles-pick-any .pick-any-tier__stock-notice {
+  margin-top: 8px;
+  padding: 4px 8px;
+  font-size: 12px;
+  color: #b00020;
+  background-color: rgba(176, 0, 32, 0.08);
+  border-radius: 4px;
+  text-align: center;
+}
+
+.turbo-bundles-pick-any .pick-any-slots {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px dashed rgba(0, 0, 0, 0.15);
+}
+
+.turbo-bundles-pick-any .pick-any-tier:not(.selected) .pick-any-slots {
+  display: none;
+}
+
+.turbo-bundles-pick-any .pick-any-slot {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.turbo-bundles-pick-any .pick-any-slot .turbo-bundles-variant-number {
+  min-width: 24px;
+  text-align: center;
+  color: var(--turbo_bundles_variant_title_color, #555);
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+.turbo-bundles-pick-any .pick-any-slot__thumb {
+  width: 28px;
+  height: 28px;
+  border-radius: 4px;
+  object-fit: cover;
+  flex-shrink: 0;
+  background-color: rgba(0, 0, 0, 0.04);
+}
+
+.turbo-bundles-pick-any .pick-any-slot select {
+  flex: 1;
+  min-width: 0;
+  padding: 6px 10px;
+  border-radius: var(--turbo_bundles_variant_border-radius, 6px);
+  border: 1px solid var(--turbo_bundles_variant_border_color, #e0e0e0);
+  background-color: var(--turbo_bundles_variant_background_color, #fff);
+  font-size: var(--turbo_bundles_variant_value-font-size, 14px);
+  font-family: var(--turbo_bundles_font-family);
+  cursor: pointer;
+}
+
+.turbo-bundles-pick-any .pick-any-variant-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.turbo-bundles-pick-any .pick-any-variant-wrapper:empty {
+  display: none;
+}
+
+/* Claim button — mirrors FBT button styling so merchants get one
+   consistent visual language across the three claim flows. */
+.turbo-bundles-pick-any-button-wrapper {
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.turbo-bundles-pick-any-button {
+  width: 100%;
+  background-color: var(--turbo_bundles_button_bg_color, #222);
+  color: var(--turbo_bundles_button_text_color, #fff);
+  border: none;
+  padding: 12px 16px;
+  border-radius: var(--turbo_bundles_button_border_radius, 6px);
+  cursor: pointer;
+  font-size: var(--turbo_bundles_button_font_size, 14px);
+  font-weight: 600;
+  font-family: var(--turbo_bundles_font-family);
+  transition: opacity 0.2s ease-in-out, transform 0.1s ease-in-out;
+}
+
+.turbo-bundles-pick-any-button:hover {
+  opacity: 0.9;
+}
+
+.turbo-bundles-pick-any-button:active {
+  transform: scale(0.98);
+}
+
+.turbo-bundles-pick-any-button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}

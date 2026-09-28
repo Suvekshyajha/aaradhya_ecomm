@@ -1,0 +1,859 @@
+const CART_DRAWER_WRAPPER = '.apex-progress-bar-cart-drawer-wrapper'
+const PRODUCT_PAGE_WRAPPER = '.apex-progress-bar-product-page-wrapper'
+const CART_PAGE_WRAPPER = '.apex-progress-bar-cart-page-wrapper'
+
+const productElements = [
+  {q:PRODUCT_PAGE_WRAPPER},
+  {q:'product-form form[data-type="add-to-cart-form"]'},
+  {q:'product-form .product-form__buttons'},
+  {q:"product-form .js-sticky-add-to-cart-marker"},
+  {q:"product-form"},
+  {q:'[data-pf-type="Section"]:not(.pf-hide) .pf-product-form [data-pf-type="ProductQuantity"]'},
+  {q:'[data-pf-type="ProductATC"]'},
+  {q:'#shopify-section-product-template .product-single__meta .product-action'},
+  {q:".product-form__controls-group--submit"},
+  {q:".product-form__item--submit"},
+  {q:".product-single__add-to-cart"},
+  {q:".ProductForm__BuyButtons, .ProductForm__AddToCart"},
+  {q:".product-page--submit-action"},
+  {q:".product-form__payment-container"},
+  {q:"[data-product-submit]"},
+  {q:".product-form--atc"},
+  {q:'.swatch_options'},
+  {q:'.product-container .shopify-product-form'},
+  {q:'.product-container .purchase-details'},
+  {q:".purchase-details"},
+  {q:".product-single__form .payment-buttons"},
+  {q:".product-form--wide"},
+  {q:".product-single__add-to-cart"},
+  {q:".product-form--button-container",},
+  {q:".product-form__item--submit"},
+  {q:".product-detail__form__action",},
+  {q:".product__submit__buttons",},
+  {q:".buy-buttons-row"},
+  {q:".t4s-product-form__buttons"},
+  {q:".qty-wrapper--with-payment-button"},
+  {q:'.product-grid__detail .product-add'},
+  {q:'.product__section-contentWrapper .product__section--accordion'},
+  {q:'ajax-cart-product-form .price-section'},
+  {q: 'safe-sticky .shopify-product-form'},
+  {q:".shopify-product-form"},
+  {q:".type_buy_buttons"},
+  {q:".product-block .product-single__form"},
+  {q:".product-single__form .add-to-cart"},
+  {q:".purchase-section",},
+  {q:".product__block-wrapper form[data-product-form]"},
+  {q:".product-form__buttons"},
+  {q:".product__atc",},
+  {q:".product-form__payment-container"},
+  {q:'[data-icon="gpicon-product-cartbutton"]'},
+  {q:".pro-detail-button"},
+  {q:".cst-small-crtbtn"},
+  {q:".product-single__shopify-payment-btn"},
+  {q:".yv-checkout-btn-full-width"},
+  {q:".yv-checkout-btn"},
+  {q:".product-form-product-template"},
+  {q:".btn-cart-wrapper"},
+  {q:".add-to-cart-container"},
+  {q:"#AddToCart-product-template"},
+  {q:".single_product__quantity"},
+  {q:".product-form__submit"},
+  {q:".btn--add-to-cart"},
+  {q:'.product-single__box .product-single__box__block--buy_buttons'},
+  {q:'.site-container .w-commerce-commerceaddtocartform'},
+  {q:'.product-form .js-form-add-to-card'},
+  {q: '.payment-buttons'},
+  {q: '.hdt-product-form__top-buttons'},
+  {q: 'buy-buttons.buy-buttons'},
+  {q: '.theiaStickySidebar .btn-atc'}
+]
+
+const cartPageElements = [
+  {q:CART_PAGE_WRAPPER},
+  {q:"#MainContent table"},
+  {q:"table"},
+  {q:"#main-cart .main-cart-content"},
+  {q:'#CartPageForm .cart__page'},
+  {q:'#PageContainer form[action="/cart"]'},
+  {q:'.cart-container #main-cart-items'},
+  {q:'.container--with-aside-paddings .cart-items__params'},
+  {q:'#shopify-section-cart-template .cart-list'},
+  {q: '.main-content #AjaxCartSubtotal .sidebar-widget__content shipping-notice'},
+  {q: '.main-content #AjaxCartForm'},{
+  q:'#page-content .cart-list'},{
+  q:"#cartForm .js-cart-form-content-cart-items"},
+  {q:'.cart-item-container'},
+  {q:'div[data-minimog-cart-items]'},{
+  q:'div[x-data="ThemeModule_CartItems"]'},
+  {q:'#site-main .cartitems--list'},
+  {q: '.cart__heading__wrapper'},
+  {q:'cart-items.cart-page ul.wt-cart__list'},
+  {q: '#shopify-section-cart-template .shopping-cart'},
+  {q: '[data-section-id="cart-template"] form[action="/cart"]'},
+  {q: '.id_main_cart .frm_cart_ajax_true'},
+]
+
+const cartDrawerElements = [
+  {q: CART_DRAWER_WRAPPER},
+  {q:'form[action="/cart"] #CartContainer'},
+  {q:'form[action="/cart"] .da_trustbadge + .Drawer__Container'},
+  {q:'form[action="/en-me/cart"]'},
+  {q:'form[action="/fr-ca/cart"]'},
+  {q:'#drawer-cart .drawer__content .drawer__body'},
+  {q:'form[action="/cart"] .drawer__inner'},
+  {q:'#cart-notification #cart-notification-product'},
+  {q:".order-value-booster-side-cart .cart-drawer__items"},
+  {q:'#Cart-Drawer .side-panel-content'},
+  {q:"#cartSlideoutWrapper .ajax-cart--top-wrapper"},
+  {q:"#cart-drawer .cart-drawer__items"},
+  {q:'form[action="/cart"] .cart-list'},
+  {q:'#dropdnMinicartPopup .cart-form-element'},
+  {q:"cart-notification-drawer .quick-buy-drawer__info"},
+  {q:'cart-drawer .cart-drawer__line-items'},
+  {q:'#CartDrawer .ajaxcart__product'},
+  {q:'sidebar-drawer#site-cart-sidebar .sidebar__body cart-form#AjaxCartForm shipping-notice'},
+  {q:'sidebar-drawer#site-cart-sidebar .sidebar__body'},
+  {q:'hdt-cart-drawer .hdt-mini-cart__header-title'},
+  {q:'.mini-cart-wrap.drawer #header-mini-cart-content'},
+  {q:'.cart-notification-wrapper .cart-notification-product'},
+  {q:'cart-drawer .drawer__scrollable cart-items'},
+  {q:'#shopify-section-minicart .minicart__items'},
+  {q:'.cart--form .cart--body'},
+  {q:'#MinimogCartDrawer m-cart-drawer-items'},
+  {q:'form[action="/cart"]'},
+  {q:'#CartDrawer-Form'},
+  {q:'#halo-cart-sidebar .previewCart-wrapper'},
+  {q:'.cart-container .w-commerce-commercecartform'},
+  {q:".qsc2-drawer .qsc2-drawer-rows"},
+  {q:".snippet-quick-cart .cart-items"},
+  {q:".mini-cart #mini-cart-form"},
+  {q:"cart-form.cart-drawer .cart-item-list"},
+  {q: '.js-minicart .product-cart'},
+  {q: '.quick-cart__container .quick-cart__items'},
+  {q: '.popup-cart .popup-cart__items'},
+]
+const shopsWithSmallerWidget = ['a5a701-d9.myshopify.com', '4357b2-6f.myshopify.com']
+const cartDrawerObserverTargets = {
+  'chb-mockup.myshopify.com': '.off-canvas--container[data-view="cart"]',
+  'm30y2f-qa.myshopify.com': '#header-group'
+}
+
+class ApexApp {
+  constructor() {
+    this.sourceElement = document.querySelector('.apex-app, .app-embed');
+    this.cartType = this.sourceElement.querySelector('.apex-progress-wrapper') && this.sourceElement.querySelector('.apex-progress-wrapper').dataset.cartType;
+    this.apexAppConfig = {}
+    this.styleConfigValue = document.querySelector('.apex-style-config') && document.querySelector('.apex-style-config').textContent.trim()
+    this.startApp = this.styleConfigValue && true
+    if(this.startApp) {
+      try {
+        this.apexAppConfig.rewardConfig = JSON.parse(this.styleConfigValue);
+        this.rewardConfig = this.apexAppConfig.rewardConfig;
+        this.excludedVariantIds = this.rewardConfig.excluded_variant_ids.map(variant => variant.id);
+        this.config = this.rewardConfig.config
+        this.selectedCountries = this.config.selected_countries_config;
+        this.showInCartDrawer = this.config.show_progress_bar_in.includes('cart')
+        this.showInProduct = this.config.show_progress_bar_in.includes('product_page')
+        this.isCartPage = window.location.pathname.endsWith('/cart');
+        this.isProductPage = window.location.pathname.includes('/products/')
+        this.goalType = this.rewardConfig.goal_type;
+        this.addedToProduct = false
+        this.addedToCartDrawer = false
+        this.addedToCartPage = false
+        this.cartDrawerElement = null;
+        this.cartDrawerListenerAdded = false;
+        this.cartDrawerRefreshTimeout = null;
+        this.cartDrawerMutationObserver = null;
+        this.cartDrawerShouldBeVisible = true;
+        this.sourceElement.style.cssText = this.resolveStyles()
+        this.progressBarsDetails = []
+        this.debounceTimeout = null
+        this.hideBranding = Boolean(this.rewardConfig.shop.subscription_active)
+        this.observeCartChanges();
+      } catch (error) {
+        console.error("Error caught in start():", error)
+        this.reportError(error)
+      }
+    }
+  }
+
+  async resolveCustomerCountry() {
+    const res = await fetch(
+      `${window.Shopify.routes.root}browsing_context_suggestions.json`
+    );
+
+    const data = await res.json();
+    this.currentCountry = data.detected_values.country.handle;
+  }
+
+  resolveStyles() {
+    var combinedStyles = { ...this.config.style };
+    var cssStyleString = Object.keys(combinedStyles).map(function (key) {
+      return key + ': ' + combinedStyles[key];
+    }).join('; ');
+
+    return cssStyleString;
+  }
+
+  async start() {
+    if(!this.startApp) {
+      return
+    }
+
+    await this.resolveCustomerCountry();
+
+    const isCountryAllowed = this.selectedCountries.some(
+      country => country.code === this.currentCountry
+    );
+
+    if (this.selectedCountries.length > 0 && !isCountryAllowed) {
+      return;
+    }
+
+    this.addToProduct()
+    this.observeCartDrawerChanges()
+    this.addToCartSlider()
+    this.addToCartPage()
+    this.syncProgressBars()
+    this.overrideCss()
+  }
+
+  addToProduct() {
+    if (this.showInProduct && this.isProductPage && !this.isCartPage) {
+      const matched = productElements.some(element => {
+        const targetElement = document.querySelector(element.q);
+        if (targetElement) {
+          if (Shopify.shop === '978cfb.myshopify.com') {
+            targetElement.insertBefore(this.sourceElement, targetElement.nextSibling);
+          } else if (Shopify.shop === 'mysu-perfume.myshopify.com') {
+            targetElement.parentElement.insertBefore(this.sourceElement, targetElement);
+          } else if (Shopify.shop === 'shopnest-rs.myshopify.com'){
+            targetElement.insertBefore(this.sourceElement, targetElement.nextElementSibling);
+          } else if (Shopify.shop === 'eadb9d.myshopify.com') {
+            targetElement.parentElement.insertBefore(this.sourceElement, targetElement.nextSibling)
+          } else if (Shopify.shop === 'cnqw7m-2t.myshopify.com') {
+            targetElement.insertBefore(this.sourceElement, targetElement.lastChild);
+          } else if (Shopify.shop === '1ddbry-pg.myshopify.com') {
+            targetElement.insertBefore(this.sourceElement, targetElement.lastChild);
+          } else {
+            targetElement.insertBefore(this.sourceElement, targetElement.firstChild);
+          }
+
+          this.sourceElement.classList.remove('hidden-apex-app-extension');
+          this.addedToProduct = true;
+          // this.addBrandingLink(this.sourceElement);
+
+          return true;
+        }
+        return false;
+      });
+
+      if (!matched) {
+        const msg = "Couldnt add to product!"
+        console.error(msg);
+        // this.reportError(msg)
+      }
+    }
+  }
+
+
+  addToCartSlider(skipEntranceAnimation = false) {
+    const tryAddToCartSlider = (retryCount = 0) => {
+      if (this.showInCartDrawer && !this.isCartPage) {
+        const matched = cartDrawerElements.some(element => {
+          const targetElement = document.querySelector(element.q);
+          if (targetElement) {
+            this.cartDrawerElement = targetElement;
+            if (this.addedToProduct) {
+              // Check if element is not there already
+              if (targetElement.parentElement.querySelector(`#${this.sourceElement.id}`) === null) {
+                const clonedDiscount = this.sourceElement.cloneNode(true);
+                if (skipEntranceAnimation) {
+                  this.disableEntranceAnimation(clonedDiscount);
+                }
+
+                if(element.q === CART_DRAWER_WRAPPER) {
+                  targetElement.insertBefore(clonedDiscount, targetElement.firstChild);
+                } else {
+                  targetElement.parentNode.insertBefore(clonedDiscount, targetElement);
+                }
+              }
+            } else {
+              if (skipEntranceAnimation) {
+                this.disableEntranceAnimation(this.sourceElement);
+              }
+
+              if(element.q === CART_DRAWER_WRAPPER) {
+                targetElement.insertBefore(this.sourceElement, targetElement.firstChild);
+              } else {
+                targetElement.parentNode.insertBefore(this.sourceElement, targetElement);
+              }
+              this.sourceElement.classList.remove('hidden-apex-app-extension');
+              // this.addBrandingLink(this.sourceElement);
+            }
+
+            this.addedToCartDrawer = true;
+            return true;
+          }
+          return false
+        });
+
+        if (!matched) {
+          // // Do something when no elements matched
+          // const msg = "Couldnt add to cartSlider!"
+          // console.error(msg);
+          // this.reportError(msg)
+        }
+
+        if (!this.addedToCartDrawer && retryCount < 2) {
+          setTimeout(() => tryAddToCartSlider(retryCount + 1), 1500);
+        }
+      }
+    };
+
+    tryAddToCartSlider();
+
+    if(Shopify.shop === 'alpaka-store-deutschland.myshopify.com' && !this.cartDrawerListenerAdded) {
+      this.cartDrawerListenerAdded = true;
+      document.addEventListener("on:css-var-height:update", () => {
+        // Debounce to prevent multiple rapid calls
+        clearTimeout(this.cartDrawerRefreshTimeout);
+        this.cartDrawerRefreshTimeout = setTimeout(() => {
+          tryAddToCartSlider();
+        }, 100);
+      });
+    }
+  }
+
+  disableEntranceAnimation(widget) {
+    const progressWrapper = widget.querySelector('.apex-progress-wrapper');
+    if (!progressWrapper) {
+      return;
+    }
+
+    progressWrapper.style.animation = 'none';
+    progressWrapper.style.opacity = '1';
+  }
+
+  hasCartDrawerWidget() {
+    return cartDrawerElements.some(element => {
+      const targetElement = document.querySelector(element.q);
+      if (!targetElement) {
+        return false;
+      }
+
+      const widgetContainer = element.q === CART_DRAWER_WRAPPER
+        ? targetElement
+        : targetElement.parentElement;
+
+      if (!widgetContainer) {
+        return false;
+      }
+
+      return Array.from(widgetContainer.querySelectorAll('.apex-app, .app-embed'))
+        .some(widget => widget.id === this.sourceElement.id);
+    });
+  }
+
+  observeCartDrawerChanges() {
+    const observerTargetSelector = cartDrawerObserverTargets[Shopify.shop];
+    if (!this.showInCartDrawer || this.isCartPage || this.cartDrawerMutationObserver || !observerTargetSelector) {
+      return;
+    }
+
+    const observerTarget = document.querySelector(observerTargetSelector);
+    if (!observerTarget) {
+      return;
+    }
+
+    this.cartDrawerMutationObserver = new MutationObserver(() => {
+      if (!this.cartDrawerShouldBeVisible || this.hasCartDrawerWidget()) {
+        return;
+      }
+
+      this.addedToCartDrawer = false;
+      this.addToCartSlider(true);
+      this.syncProgressBars();
+    });
+
+    this.cartDrawerMutationObserver.observe(observerTarget, {
+      childList: true,
+      subtree: true
+    });
+  }
+
+  addToCartPage() {
+    if(this.showInCartDrawer && this.isCartPage) {
+      const matched = cartPageElements.some(element => {
+        const targetElement = document.querySelector(element.q);
+        if (targetElement) {
+          if(element.q === CART_PAGE_WRAPPER) {
+            targetElement.insertBefore(this.sourceElement, targetElement.firstChild);
+          } else {
+            targetElement.parentNode.insertBefore(this.sourceElement, targetElement);
+          }
+
+          this.sourceElement.classList.remove('hidden-apex-app-extension')
+
+          this.addedToCartPage = true
+
+          // this.addBrandingLink(this.sourceElement);
+
+          return true
+        }
+        return false
+      })
+
+      if (!matched) {
+        // Do something when no elements matched
+        const msg = "Couldnt add to cart!"
+        console.error(msg);
+        // this.reportError(msg)
+      }
+    }
+  }
+
+  async fetchDataFromCart() {
+    try {
+      const response = await fetch('/cart.js');
+      return await response.json();
+    } catch (error) {
+      console.error('Error fetching cart information:', error);
+      return null;
+    }
+  }
+
+  async processCartData() {
+    const cartData = await this.fetchDataFromCart();
+    if (!cartData) return;
+
+    let itemsInCartCount = cartData.items.reduce((count, item) => {
+      let variantId = `gid://shopify/ProductVariant/${item.variant_id}`
+
+      if (!this.excludedVariantIds.some(element => element.includes(variantId))) {
+        count += item.quantity;
+      }
+      return count;
+    }, 0);
+
+    let cartAmount = cartData.items.reduce((price, item) => {
+      let variantId = `gid://shopify/ProductVariant/${item.variant_id}`
+      if (!this.excludedVariantIds.some(element => element.includes(variantId))) {
+        price += item.final_line_price;
+      }
+      return price;
+    }, 0);
+
+    cartAmount /= 100;
+
+    return { itemsInCartCount, cartAmount };
+  }
+
+  async syncProgressBars() {
+    const cartData = await this.processCartData();
+    if (!cartData) return;
+
+    const { itemsInCartCount, cartAmount } = cartData;
+
+    if (itemsInCartCount !== undefined && cartAmount !== undefined) {
+      this.generateDiscountText(cartAmount, itemsInCartCount);
+      this.updateProgressBar(cartAmount, itemsInCartCount);
+
+      this.hideCartDrawerIfEmpty(itemsInCartCount, cartAmount)
+    }
+  }
+
+  hideCartDrawerIfEmpty(itemsInCartCount, cartAmount) {
+    if(Shopify.shop === 'coatedlemon.myshopify.com') {
+      this.cartDrawerShouldBeVisible = true;
+      return
+    }
+
+    this.cartDrawerShouldBeVisible = itemsInCartCount !== 0 && cartAmount !== 0;
+
+    if(this.showInCartDrawer && this.cartDrawerElement && !this.cartDrawerShouldBeVisible) {
+      if(this.cartDrawerElement.parentElement.querySelector(`#${this.sourceElement.id}`)) {
+        this.cartDrawerElement.parentElement.querySelector(`#${this.sourceElement.id}`).remove();
+      }
+    }
+  }
+
+  async reportError(e) {
+    const shop = Shopify.shop;
+    const url = "https://jellyfish-app-czq2z.ondigitalocean.app/api/errors";
+
+    const isBot = /bot|googlebot|bingbot|claudebot|crawler|spider|robot|crawling/i.test(navigator.userAgent);
+
+    if (isBot) {
+      return; // Skip error reporting if detected as a bot
+    }
+
+    if (shop === 'hastko.myshopify.com') {
+      return; // Skip error reporting for hastko.myshopify.com
+    }
+
+    if (sessionStorage.getItem(`error_reported_${shop}`)) {
+      return;
+    }
+
+    sessionStorage.setItem(`error_reported_${shop}`, 'true');
+
+    fetch(url, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        shop: shop,
+        current_url: window.location.href,
+        error: e.toString(),
+      }),
+    })
+  }
+
+  async syncWithCart() {
+    const isCountryAllowed = this.selectedCountries.some(
+      country => country.code === this.currentCountry
+    );
+
+    if (this.selectedCountries.length > 0 && !isCountryAllowed) {
+      return;
+    }
+
+    const cartData = await this.processCartData();
+    if (!cartData) return;
+
+    const { itemsInCartCount, cartAmount } = cartData;
+
+    if (itemsInCartCount !== undefined && cartAmount !== undefined) {
+      this.addToCartSlider();
+      this.addToCartPage();
+      this.generateDiscountText(cartAmount, itemsInCartCount);
+      this.updateProgressBar(cartAmount, itemsInCartCount);
+      this.hideCartDrawerIfEmpty(itemsInCartCount, cartAmount);
+    }
+  }
+
+  generateDiscountText(cartAmount, itemsCount) {
+    const messageTextElements = document.querySelectorAll('.apex-message-text');
+
+    const fieldToCompare = this.goalType === 'product_quantity' ? itemsCount : cartAmount;
+
+    const relevantReward = this.rewardConfig.rewards.find(reward => {
+      if (this.goalType === 'product_quantity') {
+        var goalAmount =  reward.goal_amount
+      } else {
+        var rewardInCurrency = reward.goal_amount * parseFloat(Shopify.currency.rate)
+        var goalAmount = Math.ceil(rewardInCurrency);
+      }
+
+      return fieldToCompare < goalAmount
+    })
+
+    const updateText = (element, text) => {
+      element.classList.add('apex-fade-out');
+
+      setTimeout(() => {
+        element.textContent = text;
+        element.classList.remove('apex-fade-out');
+      }, 300);
+    };
+
+    if (relevantReward) {
+      let textToSet = '';
+
+      let goalAmountWithCurrency = relevantReward.goal_amount * parseFloat(Shopify.currency.rate);
+      let roundedNumber = Math.ceil(goalAmountWithCurrency)
+
+      if (this.goalType === 'product_quantity') {
+        const amountLeft = relevantReward.goal_amount - fieldToCompare;
+        textToSet = relevantReward.unfulfilled_goal_text.replace("{{amount_left}}", amountLeft);
+      } else if (this.goalType === 'cart_amount') {
+        let rounded = roundedNumber - fieldToCompare
+
+        const locale = Shopify.locale.toLowerCase();
+        let resolvedLocale = locale === 'de' ? 'en-IE' : locale
+
+        if(Shopify.shop === '978cfb.myshopify.com' || Shopify.shop === 'alpaka-store-deutschland.myshopify.com') {
+          resolvedLocale = 'de'
+        }
+
+        let currency = Shopify.currency.active
+
+        if(Shopify.shop === '3abf38-d9.myshopify.com') {
+          currency = 'USD'
+        }
+
+        if(Shopify.shop === 'b7b903-2.myshopify.com') {
+          currency = 'USD'
+        }
+
+        let fractionDigits = 2;
+        if(Shopify.shop === 'nicopolycl.myshopify.com') {
+          fractionDigits = 0;
+        }
+
+        let formattedPrice = rounded.toLocaleString(resolvedLocale, {
+          style: 'currency',
+          currency: currency,
+          minimumFractionDigits: fractionDigits,
+          maximumFractionDigits: fractionDigits
+        });
+
+        formattedPrice = formattedPrice.replace('RON', '').trim()
+
+        textToSet = relevantReward.unfulfilled_goal_text.replace("{{amount_left}}", formattedPrice);
+      }
+
+      messageTextElements.forEach(element => updateText(element, textToSet));
+    } else {
+      // Assuming that the rewards are reached
+      const fulfilledText = this.rewardConfig.fulfilled_goal_text;
+      messageTextElements.forEach(element => updateText(element, fulfilledText));
+    }
+  }
+
+  updateProgressBar(cartAmount, itemsCount) {
+    let previousGoal = 0;
+
+    const progressBarsGroups = [];
+
+    const allProgressBars = document.querySelectorAll('.apex-progress-bar');
+    allProgressBars.forEach((bar, index) => {
+      const groupIndex = index % this.rewardConfig.rewards.length;
+      progressBarsGroups[groupIndex] = progressBarsGroups[groupIndex] || [];
+      progressBarsGroups[groupIndex].push(bar);
+    });
+
+    this.rewardConfig.rewards.forEach((reward, index) => {
+      let widthPercentage;
+
+      let goalAmountWithCurrency = reward.goal_amount * parseFloat(Shopify.currency.rate);
+      let roundedNumber = Math.ceil(goalAmountWithCurrency)
+
+      if (this.goalType === 'cart_amount') {
+        widthPercentage = cartAmount >= roundedNumber ? 100 :
+          Math.min(100, 100 / (roundedNumber - previousGoal) * (cartAmount - previousGoal));
+      } else if (this.goalType === 'product_quantity') {
+        let roundedNumber = reward.goal_amount
+
+        widthPercentage = itemsCount >= roundedNumber ? 100 :
+          Math.min(100, 100 / (roundedNumber - previousGoal) * (itemsCount - previousGoal));
+      }
+
+      if (progressBarsGroups[index]) {
+        let currentWidth = parseFloat(progressBarsGroups[index][0].style.width) || 0
+        let newWidth = Math.max(widthPercentage, 0)
+
+        this.progressBarsDetails.push({
+          bar: progressBarsGroups[index],
+          newWidth: Math.max(newWidth, 0),
+          currentWidth: currentWidth
+        });
+      }
+      previousGoal = roundedNumber;
+    });
+    this.determineAndUpdateDirection();
+  }
+
+  determineAndUpdateDirection() {
+    const isIncreasing = this.progressBarsDetails.some(({ newWidth, currentWidth }) => newWidth > currentWidth);
+
+    const orderedProgressBar = isIncreasing ?
+      this.progressBarsDetails.filter(({ newWidth, currentWidth }) => newWidth > currentWidth) :
+      this.progressBarsDetails.filter(({ newWidth, currentWidth }) => newWidth < currentWidth).reverse();
+
+    orderedProgressBar.forEach(({ bar, currentWidth, newWidth }, index) => {
+      let delay = 500 * index;
+      if (currentWidth !== newWidth) {
+        setTimeout(() => {
+          bar.forEach((b) => {
+            b.style.width = newWidth + '%';
+          });
+        }, delay);
+      }
+    });
+
+    this.progressBarsDetails = [];
+  }
+
+  overrideCss() {
+    if (Shopify.shop === 'aunoir.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-message-text-padding', '10px 0 10px');
+    }
+    if (shopsWithSmallerWidget.includes(Shopify.shop)) {
+      const targetEl = document.querySelector('.product-form__buttons');
+      const desiredWidth = window.getComputedStyle(targetEl).getPropertyValue('max-width');
+
+      document.documentElement.style.setProperty('--apex-apex-progress-wrapper-width', desiredWidth);
+    }
+
+    if(Shopify.shop === 'a5a701-d9.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-progress-wrapper-margin', '-10px 0px 10px 0px');
+    }
+
+    if(Shopify.shop === 'team-feet.myshopify.com') {
+      // document.documentElement.style.setProperty('--apex-apex-progress-wrapper-width', '345px');
+    }
+
+    if(Shopify.shop === 'ee79db-01.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-apex-progress-wrapper-width', '90%');
+      document.documentElement.style.setProperty('--apex-progress-wrapper-margin', 'auto');
+    }
+
+    if(Shopify.shop === 'carestore-2228.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-progress-wrapper-margin', 'auto');
+    }
+
+    if(Shopify.shop === 'un-chat-dans-ma-botte.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-progress-wrapper-margin', '-20px 0 10px');
+    }
+
+    if(Shopify.shop === 'baveuk-ltd.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-progress-wrapper-margin', '0 0 10px');
+      document.documentElement.style.setProperty('--apex-message-text-padding', '0');
+
+      document.querySelectorAll('.apex-message-text').forEach(el => {
+        el.style.marginRight = 'auto';
+      });
+
+      document.querySelectorAll('.apex-progress-wrapper1').forEach(el => {
+        el.style.maxWidth = 'unset';
+        el.style.width = '100%';
+      });
+    }
+
+    if(Shopify.shop === 'zoelle-fit.myshopify.com') {
+      document.documentElement.style.setProperty('--apex-message-text-padding', '10px 0 10px');
+
+      this.sourceElement.querySelectorAll('.apex-progress-reward-text').forEach(element => {
+          element.style.paddingTop = '10px';
+      });
+
+      document.querySelector('.apex-progress-container').style.alignItems = 'unset'
+      document.querySelector('.apex-message-text').style.textAlign = 'unset'
+    }
+  }
+
+  // addBrandingLink(targetElement) {
+  //   if(this.hideBranding) {
+  //     return
+  //   }
+
+  //   if(targetElement.querySelector('.apex-progress-branding')) {
+  //     return
+  //   };
+
+  //   const htmlElement = `<div class="apex-progress-branding">Powered by
+  //     <a href="https://apps.shopify.com/apex-cart-progress-upsell" target="_blank" class="apex-progress-branding-link">Apex Progress Bar</a>
+  //   </div>`
+
+  //   const tempDiv = document.createElement('div')
+  //   tempDiv.innerHTML = htmlElement
+  //   const newElement = tempDiv.firstElementChild;
+
+  //   targetElement.prepend(newElement)
+  // }
+
+  observeCartChanges() {
+    if (this.cartObserver) {
+      this.cartObserver.disconnect();
+    }
+
+    const ShopifyCartURLs = [
+      "/cart/update",
+      "/cart/change",
+      "/cart/clear",
+      "/cart/update.js",
+      "/cart/change.js",
+      "/cart/clear.js",
+      "?section_id=cart-drawer",
+      "/cart/add",
+      "/cart/add.js",
+    ];
+
+    const CartUrls = [
+      "/cart",
+    ]
+
+    let lastRequestTime = 0;
+
+    let DEBOUNCE_DELAY = 300;
+
+    this.cartObserver = new PerformanceObserver((list) => {
+      const now = Date.now();
+      let shouldSync = false;
+
+      list.getEntries().forEach((entry) => {
+        const isValidRequestType = ['xmlhttprequest', 'fetch'].includes(entry.initiatorType);
+        const isResponseOk = entry.responseStatus === undefined || entry.responseStatus === 200;
+
+
+        if (isValidRequestType && isResponseOk && ShopifyCartURLs.some(url => entry.name.includes(url)) || CartUrls.some(url => entry.name === window.location.origin + url)) {
+          shouldSync = true;
+          lastRequestTime = now;
+        }
+      });
+
+      if (shouldSync) {
+        clearTimeout(this.debounceTimeout);
+        this.debounceTimeout = setTimeout(() => {
+          if (Date.now() - lastRequestTime >= DEBOUNCE_DELAY) {
+            this.syncWithCart();
+          }
+        }, DEBOUNCE_DELAY);
+      }
+    });
+
+    this.cartObserver.observe({ entryTypes: ["resource"] });
+  }
+
+  openCartDrawer() {
+    let rootRoute = window.Shopify.routes.root || "/";
+    let cartForms = document.querySelectorAll(`form[action="${rootRoute}cart/add"]`);
+    let lastCartForm = cartForms[cartForms.length - 1];
+
+    if (!lastCartForm) return;
+
+    let quantityInput = lastCartForm.querySelector('input[name="quantity"]');
+    let submitButton = lastCartForm.querySelector('button[type="submit"]');
+    let bubblePopup = document.querySelector('cart-notification .cart-notification__links');
+
+    if (!submitButton) return;
+
+    let hiddenQuantityInput = document.createElement("input");
+
+    if (hiddenQuantityInput && !bubblePopup) {
+      hiddenQuantityInput.setAttribute("type", "hidden");
+      hiddenQuantityInput.setAttribute("value", "0");
+      hiddenQuantityInput.setAttribute("name", "quantity");
+
+      if (!quantityInput && this.isProductPage && !bubblePopup) {
+          let existingQuantityInput = document.querySelector('input[name="quantity"]');
+          let existingQuantityValue = existingQuantityInput.value;
+          existingQuantityInput.value = 0;
+          submitButton.click();
+          existingQuantityInput.value = existingQuantityValue;
+          return;
+      }
+
+      if (!quantityInput) {
+          lastCartForm.appendChild(hiddenQuantityInput);
+          submitButton.click();
+          hiddenQuantityInput.remove();
+          return;
+      }
+      let originalQuantity = quantityInput.getAttribute("value");
+      quantityInput.setAttribute("min", 0);
+      quantityInput.setAttribute("value", 0);
+      submitButton.click();
+      quantityInput.setAttribute("min", 1);
+      quantityInput.setAttribute("value", originalQuantity || 1);
+    }
+  }
+}
+
+
+const apexApp = new ApexApp;
+
+apexApp.start()

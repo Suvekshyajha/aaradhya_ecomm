@@ -20,8 +20,10 @@ const upload = multer({
 async function imageUploadUtil(file) {
     
     const result = await cloudinary.uploader.upload(file, {
-        resource_type: 'auto'  
-    
+        resource_type: 'auto',
+        transformation: [
+            { quality: 'auto:good', fetch_format: 'auto' }
+        ]
     });
     
 
