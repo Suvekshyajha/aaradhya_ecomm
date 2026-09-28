@@ -76,7 +76,6 @@ export const addProductFormElements = [
       { id: "sabyasachi", label: "Sabyasachi" },
       { id: "biba", label: "Biba" },
       { id: "manishMalhotra", label: "Manish Malhotra" },
-      { id: "aurelia", label: "Aurelia" },
       { id: "libas", label: "Libas" },
       { id: "rangriti", label: "Rangriti" },
     ],
@@ -183,7 +182,6 @@ export const brandOptionsMap = {
   'sabyasachi': "Sabyasachi",
   'biba': 'Biba',
   'manishMalhotra': 'Manish Malhotra',
-  'aurelia': 'Aurelia',
   'libas': 'Libas',
   'rangriti': 'Rangriti'
 }
@@ -193,7 +191,6 @@ export const filterOptions = {
     { id: "sabyasachi", label: "Sabyasachi" },
     { id: "biba", label: "Biba" },
     { id: "manishMalhotra", label: "Manish Malhotra" },
-    { id: "aurelia", label: "Aurelia" },
     { id: "libas", label: "Libas" },
     { id: "rangriti", label: "Rangriti" },
   ],

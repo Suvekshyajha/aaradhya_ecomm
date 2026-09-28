@@ -208,7 +208,7 @@ import bannerOne from '../../assets/download.webp';
 import bannerTwo from '../../assets/d2.webp';
 import bannerThree from '../../assets/d3.webp';
 import { Button } from '@/components/ui/button';
-import { ChevronLeftIcon, ChevronRightIcon, CloudLightning, ShirtIcon, WatchIcon, PartyPopperIcon, HeartIcon, CrownIcon, StarIcon, GemIcon, Sparkles, Tag, BadgeCheck } from 'lucide-react';
+import { ChevronLeftIcon, ChevronRightIcon, CloudLightning, ShirtIcon, WatchIcon, PartyPopperIcon, HeartIcon, CrownIcon, StarIcon, GemIcon, Sparkles, BadgeCheck } from 'lucide-react';
 import { Card, CardContent } from '@/components/ui/card';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchAllFilteredProducts, fetchProductDetails, fetchSponsoredProducts } from '@/store/shop/products-slice';
@@ -234,7 +234,6 @@ const brandsWithIcons=
   { id: "sabyasachi", label: "Sabyasachi", icon: CrownIcon },
   { id: "biba", label: "Biba", icon: StarIcon },
   { id: "manishMalhotra", label: "Manish Malhotra",  icon: GemIcon },
-  { id: "aurelia", label: "Aurelia", icon: Tag },
   { id: "libas", label: "Libas", icon: Sparkles },
   { id: "rangriti", label: "Rangriti", icon: BadgeCheck },
 ]
