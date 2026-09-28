@@ -64,7 +64,8 @@ export const addProductFormElements = [
       { id: "casualwears", label: "Casual Wears" },
       { id: "partywears", label: "Party Wears" },
       { id: "weddingwears", label: "Wedding Wears" },
-      
+      { id: "festivewears", label: "Festive Wears" },
+      { id: "dailywears", label: "Daily Wears" },
     ],
   },
   {
@@ -75,6 +76,9 @@ export const addProductFormElements = [
       { id: "sabyasachi", label: "Sabyasachi" },
       { id: "biba", label: "Biba" },
       { id: "manishMalhotra", label: "Manish Malhotra" },
+      { id: "aurelia", label: "Aurelia" },
+      { id: "libas", label: "Libas" },
+      { id: "rangriti", label: "Rangriti" },
     ],
   },
   {
@@ -169,14 +173,19 @@ export const shoppingViewHeaderMenuItems = [
 export const categoryOptionsMap = {
   'casualwears': "Casual Wears",
   'partywears': 'Party Wears',
-  'weddingwears': 'Wedding Wears'
+  'weddingwears': 'Wedding Wears',
+  'festivewears': 'Festive Wears',
+  'dailywears': 'Daily Wears'
 }
 
 
 export const brandOptionsMap = {
   'sabyasachi': "Sabyasachi",
   'biba': 'Biba',
-  'manishMalhotra': 'Manish Malhotra'
+  'manishMalhotra': 'Manish Malhotra',
+  'aurelia': 'Aurelia',
+  'libas': 'Libas',
+  'rangriti': 'Rangriti'
 }
 
 export const filterOptions = {
@@ -184,11 +193,16 @@ export const filterOptions = {
     { id: "sabyasachi", label: "Sabyasachi" },
     { id: "biba", label: "Biba" },
     { id: "manishMalhotra", label: "Manish Malhotra" },
+    { id: "aurelia", label: "Aurelia" },
+    { id: "libas", label: "Libas" },
+    { id: "rangriti", label: "Rangriti" },
   ],
   category: [
     { id: "casualwears", label: "Casual Wears" },
     { id: "partywears", label: "Party Wears" },
     { id: "weddingwears", label: "Wedding Wears" },
+    { id: "festivewears", label: "Festive Wears" },
+    { id: "dailywears", label: "Daily Wears" },
   ],
 };
 
