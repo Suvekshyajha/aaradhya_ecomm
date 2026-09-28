@@ -89,6 +89,8 @@ function AdminProducts() {
           if (data?.payload?.success) {
             dispatch(fetchAllProducts());
             setFormData(initialFormData);
+            setImageFile(null);
+            setUploadedImageUrl("");
             setOpenCreateProductsDialog(false);
             setCurrentEditedId(null);
           }
@@ -180,6 +182,8 @@ function AdminProducts() {
           setOpenCreateProductsDialog(false);
           setCurrentEditedId(null);
           setFormData(initialFormData);
+          setImageFile(null);
+          setUploadedImageUrl("");
         }}
       >
         <SheetContent side="right" className="overflow-auto bg-white">
