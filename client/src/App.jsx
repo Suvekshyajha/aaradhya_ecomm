@@ -170,9 +170,16 @@ function App() {
   );
   const dispatch = useDispatch();
 
+  // Don't run checkAuth on auth pages - users come to log in, not to check auth status
+  // This prevents the form from being auto-populated with old user email
+  const { pathname } = useLocation();
+  const isAuthPage = pathname.includes("/auth");
+
   useEffect(() => {
-    dispatch(checkAuth());
-  }, [dispatch]);
+    if (!isAuthPage) {
+      dispatch(checkAuth());
+    }
+  }, [dispatch, isAuthPage]);
 
   if (isLoading) return <Skeleton className="w-full h-screen bg-[hsl(36,33%,98%)]" />;
 
