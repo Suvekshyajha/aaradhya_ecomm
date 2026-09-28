@@ -4,7 +4,8 @@ import { loginFormControls } from "@/config";
 import { loginUser } from "@/store/auth-slice";
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, Eye, EyeOff } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const initialState = {
   email: "",
@@ -15,6 +16,8 @@ function AuthLogin() {
   const [formData, setFormData] = useState(initialState);
   const dispatch = useDispatch();
   const { toast } = useToast();
+  const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   function onSubmit(event) {
     event.preventDefault();
@@ -24,6 +27,7 @@ function AuthLogin() {
         toast({
           title: data?.payload?.message,
         });
+        navigate('/admin/dashboard');
       } else {
         toast({
           title: data?.payload?.message,

@@ -2,6 +2,7 @@
 import { Input } from "../ui/input";
 import { Label } from "../ui/label";
 import { Checkbox } from "../ui/checkbox";
+import { Eye, EyeOff } from "lucide-react";
 import {
   Select,
   SelectContent,
@@ -20,9 +21,43 @@ function CommonForm({
   buttonText,
   isBtnDisabled,
 }) {
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
+
   function renderInputsByComponentType(getControlItem) {
     let element = null;
     const value = formData[getControlItem.name] || "";
+
+    if (getControlItem.componentType === "input" && getControlItem.type === "password") {
+      // Password field with show/hide toggle
+      element = (
+        <div className="relative">
+          <Input
+            name={getControlItem.name}
+            placeholder={getControlItem.placeholder}
+            id={getControlItem.name}
+            type={passwordVisibility ? "text" : "password"}
+            value={value}
+            onChange={(event) =>
+              setFormData({
+                ...formData,
+                [getControlItem.name]: event.target.value,
+              })
+            }
+            className="block w-full"
+          />
+          <EyeOff
+            onClick={() => setPasswordVisibility(false)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"
+          />
+          <Eye
+            onClick={() => setPasswordVisibility(true)}
+            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"
+          />
+        </div>
+      );
+
+      return element;
+    }
 
     switch (getControlItem.componentType) {
       case "input":
