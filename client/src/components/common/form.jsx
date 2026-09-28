@@ -44,16 +44,19 @@ function CommonForm({
                 [getControlItem.name]: event.target.value,
               })
             }
-            className="block w-full"
+            className="block w-full pr-8"
           />
-          <EyeOff
-            onClick={() => setPasswordVisibility(false)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"
-          />
-          <Eye
-            onClick={() => setPasswordVisibility(true)}
-            className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"
-          />
+          {passwordVisibility ? (
+            <Eye
+              onClick={() => setPasswordVisibility(false)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"
+            />
+          ) : (
+            <EyeOff
+              onClick={() => setPasswordVisibility(true)}
+              className="absolute right-3 top-1/2 -translate-y-1/2 text-muted-foreground cursor-pointer"
+            />
+          )}
         </div>
       );
 
