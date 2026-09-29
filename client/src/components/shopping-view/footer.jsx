@@ -7,7 +7,7 @@ function ShoppingFooter() {
         <div>
           <div className="flex items-center gap-2.5">
             <span className="flex h-10 w-10 items-center justify-center rounded-full bg-gold font-display text-xl font-bold text-[#2b0f1e]">
-              G
+              A
             </span>
             <span className="leading-none">
               <span className="block font-display text-2xl font-bold tracking-wide">
@@ -22,6 +22,13 @@ function ShoppingFooter() {
             Handpicked traditional and modern fashion, crafted with premium
             fabrics for every occasion.
           </p>
+          <p className="mt-4 text-sm text-[#f5e9dd]/80">Ekantakuna, Lalitpur, Nepal</p>
+          <a
+            href="tel:+9779865366077"
+            className="mt-1 block text-sm font-semibold text-gold hover:underline"
+          >
+            +977 9865366077
+          </a>
         </div>
 
         <div>
@@ -52,10 +59,10 @@ function ShoppingFooter() {
             Customer Care
           </h5>
           <ul className="mt-4 space-y-2.5 text-sm text-[#f5e9dd]/80">
-            <li>Store Policy</li>
-            <li>Secure eSewa Payments</li>
-            <li>Easy Returns</li>
-            <li>FAQ</li>
+            <li><Link className="transition-colors hover:text-gold" to="/shop/policies">Store Policy</Link></li>
+            <li><Link className="transition-colors hover:text-gold" to="/shop/policies#payments">Secure eSewa Payments</Link></li>
+            <li><Link className="transition-colors hover:text-gold" to="/shop/policies#returns">Easy Returns</Link></li>
+            <li><Link className="transition-colors hover:text-gold" to="/shop/faq">FAQ</Link></li>
           </ul>
         </div>
       </div>

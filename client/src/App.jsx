@@ -135,6 +135,8 @@ const UnauthPage = lazy(() => import("./pages/unauth-page"));
 const SearchProducts = lazy(() => import("./pages/shopping-view/search"));
 const About = lazy(() => import("./pages/shopping-view/about"));
 const Contact = lazy(() => import("./pages/shopping-view/contact"));
+const Faq = lazy(() => import("./pages/shopping-view/faq"));
+const Policies = lazy(() => import("./pages/shopping-view/policies"));
 const EsewaSuccessPage = lazy(() =>
   import("./pages/shopping-view/esewa-success")
 );
@@ -239,6 +241,8 @@ function App() {
           <Route path="account" element={<ShoppingAccount />} />
           <Route path="about" element={<About />} />
           <Route path="contact" element={<Contact />} /> 
+          <Route path="faq" element={<Faq />} />
+          <Route path="policies" element={<Policies />} />
           <Route path="search" element={<SearchProducts />} />
 
 
