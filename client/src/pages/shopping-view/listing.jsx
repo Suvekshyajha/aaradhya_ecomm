@@ -51,7 +51,7 @@ function ShoppingListing() {
   useSEO({
     title: "Shop All Products | AARADHYA",
     description:
-      "Browse all AARADHYA products - casual, party and wedding wears. Filter by category and brand, sort by price or title.",
+      "Browse all AARADHYA products - casual, party, wedding, festive and daily wears. Filter by category and brand, sort by price or title.",
     path: "/shop/listing",
   });
 

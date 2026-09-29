@@ -181,7 +181,7 @@ function App() {
     }
   }, [dispatch, isAuthPage]);
 
-  if (isLoading) return <Skeleton className="w-full h-screen bg-[hsl(36,33%,98%)]" />;
+  if (isLoading && !isAuthPage) return <Skeleton className="w-full h-screen bg-[hsl(36,33%,98%)]" />;
 
   console.log(isLoading, user);
   return (

@@ -121,10 +121,12 @@ const fetchCartItems = async (req, res) => {
       select: "image title price salePrice",
     });
 
+    // A user who never added anything has no cart document yet - that is an
+    // empty cart, not an error. Return 200 so the header badge simply shows 0.
     if (!cart) {
-      return res.status(404).json({
-        success: false,
-        message: "Cart not found!",
+      return res.status(200).json({
+        success: true,
+        data: { items: [] },
       });
     }
 

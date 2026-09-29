@@ -2,7 +2,7 @@ import { useEffect } from "react";
 
 const DEFAULT_TITLE = "AARADHYA | Chic & Luxury Fashion Online";
 const DEFAULT_DESCRIPTION =
-  "AARADHYA is your destination for chic and luxury fashion - shop casual, party and wedding wears from Sabyasachi, Biba, Manish Malhotra and more.";
+  "AARADHYA is your destination for chic and luxury fashion - shop casual, party, wedding, festive and daily wears from Sabyasachi, Biba, Manish Malhotra, Libas, Rangriti and more.";
 
 function getSiteUrl() {
   const url = (import.meta.env.VITE_SITE_URL || "").trim().replace(/\/$/, "");
@@ -53,6 +53,7 @@ export function useSEO({ title, description, path, image, type = "website" } = {
     const finalTitle = title || DEFAULT_TITLE;
     const finalDescription = description || DEFAULT_DESCRIPTION;
     const canonical = `${siteUrl}${path || window.location.pathname}`;
+    const finalImage = image || `${siteUrl}/og-cover.webp`;
 
     document.title = finalTitle;
     upsertMetaByName("description", finalDescription);
@@ -61,7 +62,11 @@ export function useSEO({ title, description, path, image, type = "website" } = {
     upsertMetaProperty("og:description", finalDescription);
     upsertMetaProperty("og:type", type);
     upsertMetaProperty("og:url", canonical);
-    if (image) upsertMetaProperty("og:image", image);
+    upsertMetaProperty("og:image", finalImage);
+    upsertMetaByName("twitter:card", "summary_large_image");
+    upsertMetaByName("twitter:title", finalTitle);
+    upsertMetaByName("twitter:description", finalDescription);
+    upsertMetaByName("twitter:image", finalImage);
   }, [title, description, path, image, type]);
 }
 

@@ -255,7 +255,7 @@ function ShoppingHome() {
   useSEO({
     title: "AARADHYA | Chic & Luxury Fashion Online",
     description:
-      "Discover chic and luxury fashion at AARADHYA - shop casual, party and wedding wears from top brands. New arrivals and featured products.",
+      "Discover chic and luxury fashion at AARADHYA - shop casual, party, wedding, festive and daily wears from top brands. New arrivals and featured products.",
     path: "/shop/home",
   });
 

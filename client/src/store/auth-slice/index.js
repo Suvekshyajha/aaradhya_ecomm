@@ -103,7 +103,9 @@ const authSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(registerUser.pending, (state) => {
-        state.isLoading = true;
+        // Intentionally not touching isLoading: App.jsx shows a full-screen
+        // skeleton whenever it is true, which would unmount the form on
+        // every submit. The form button/toast already communicates progress.
       })
       .addCase(registerUser.fulfilled, (state, action) => {
         state.isLoading = false;
@@ -116,7 +118,8 @@ const authSlice = createSlice({
         state.isAuthenticated = false;
       })
       .addCase(loginUser.pending, (state) => {
-        state.isLoading = true;
+        // See registerUser.pending - keep the login form mounted while the
+        // request is in flight so a wrong password only shows a toast.
       })
       .addCase(loginUser.fulfilled, (state, action) => {
         console.log(action);
