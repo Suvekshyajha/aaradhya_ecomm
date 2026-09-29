@@ -3,6 +3,7 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cookieParser = require("cookie-parser");
 const cors = require("cors");
+const rateLimit = require("express-rate-limit");
 const authRouter = require("./routes/auth/auth-routes");
 const adminProductsRouter = require("./routes/admin/products-routes");
 const adminOrderRouter = require("./routes/admin/order-routes");
@@ -35,6 +36,21 @@ mongoose
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+// Global backstop against request floods / DoS. Generous on purpose (normal
+// shop use never gets near it); /api/auth/* keeps its own stricter limiter
+// (30 attempts / 15 min per IP) for brute-force protection.
+const globalLimiter = rateLimit({
+    windowMs: 15 * 60 * 1000,
+    max: 1000,
+    standardHeaders: true,
+    legacyHeaders: false,
+    message: {
+        success: false,
+        message: "Too many requests, please slow down and try again later.",
+    },
+});
+app.use(globalLimiter);
 
 app.use(
     cors({
